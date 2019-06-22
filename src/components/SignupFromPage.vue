@@ -55,7 +55,7 @@
             <div class="field">
               <label class="label">Date of Birth</label>
               <div class="control">
-                <input type="date" id="party" name="party" min="1950-01-01" max="2100-01-01">
+                <DatePicker type="date" placeholder="Select date" style="width: 250px"></DatePicker>
               </div>
             </div>
 
@@ -92,7 +92,7 @@
                   type="tel"
                   name="phone"
                   pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-                  placeholder="e.g. +46-7xx xx xxxx"
+                  placeholder="e.g. +46 7xx xx xxxx"
                 >
                 <span class="icon is-small is-left">
                   <i class="fas fa-phone"></i>

@@ -5,30 +5,69 @@
         <vue-good-table
           :columns="columns"
           :rows="rows"
-          :select-options="{ enabled: true }"
           :pagination-options="{enabled: true,mode: 'records'}"
-        />
+        >
+          <template slot="table-row" slot-scope="props">
+            <span v-if="props.column.field == 'action'">
+              <a
+                class="fas fa-pen"
+                title="edit"
+                style="margin:5px;"
+                v-on:click="onRowEditClick(props.row)"
+              />
+              <a class="fas fa-trash" title="remove" v-on:click="onRowEditClick(props.row)"/>
+            </span>
+          </template>
+        </vue-good-table>
       </div>
     </div>
+    <Modal
+      v-model="isEditDialogPopup"
+      title="Edit Profile "
+      ok-text="comfired"
+      cancel-text="cancel"
+      :styles="{top: '20px'}"
+      @on-ok="onConfirmBtnClick"
+      @on-cancel="onCancelBtnClick"
+    >
+      <MemberProfileEditDialog/>
+    </Modal>
   </div>
 </template>
 
 <script>
 import "vue-good-table/dist/vue-good-table.css";
 import { VueGoodTable } from "vue-good-table";
+import MemberProfileEditDialog from "./MemberProfileEditDialog";
 
 export default {
   name: "FormalMemberListPage",
   components: {
-    VueGoodTable
+    VueGoodTable,
+    MemberProfileEditDialog
   },
   methods: {
     phoneFormatFn(value) {
       return value.replace(/\B(?=(\d{3})+(?!\d))/g, "-");
+    },
+    onRowEditClick(params) {
+      this.isEditDialogPopup = true;
+      return params;
+    },
+    onRowRemoveClick(params) {
+      return params;
+      // this.isEditDialogPopup = true;
+    },
+    onConfirmBtnClick() {
+      this.$Message.info("Clicked ok");
+    },
+    onCancelBtnClick() {
+      this.$Message.info("Clicked cancel");
     }
   },
   data() {
     return {
+      isEditDialogPopup: false,
       columns: [
         {
           label: "Timestamp",
@@ -90,6 +129,10 @@ export default {
           label: "Term",
           field: "term",
           type: "number"
+        },
+        {
+          label: "Action",
+          field: "action"
         }
       ],
       rows: [
