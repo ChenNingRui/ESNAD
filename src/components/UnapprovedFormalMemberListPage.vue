@@ -1,10 +1,10 @@
 <template>
-  <div id="UnapprovedMemberListPage">
+  <div id="unapprovedMemberListPage">
     <div class="card">
       <div class="card-content">
         <nav class="level">
           <p class="level-right has-text-centered">
-            <a class="button is-primary is-medium" @click="onVerifiedBtnClick">verify</a>
+            <a class="button is-primary is-medium" @click="onVerifiedBtnClick">Verify</a>
           </p>
         </nav>
         <vue-good-table
@@ -14,19 +14,20 @@
           :pagination-options="{
             enabled: true,
             mode: 'records'}"
-        ></vue-good-table>
+          @on-selected-rows-change="selectionChanged"
+        >></vue-good-table>
       </div>
     </div>
     <Modal
       v-model="isVerifiedDialogPopup"
       title="Edit Profile "
-      ok-text="comfired"
-      cancel-text="cancel"
+      ok-text="Confirm"
+      cancel-text="Cancel"
       :styles="{top: '20px'}"
       @on-ok="onConfirmBtnClick"
       @on-cancel="onCancelBtnClick"
     >
-      <MemberShipVerifiedDialog/>
+      <MemberShipVerifiedDialog :data="this.selectedData"/>
     </Modal>
   </div>
 </template>
@@ -36,12 +37,17 @@ import "vue-good-table/dist/vue-good-table.css";
 import { VueGoodTable } from "vue-good-table";
 import MemberShipVerifiedDialog from "./MemberShipVerifiedDialog.vue";
 export default {
-  name: "UnapprovedMemberListPage",
+  name: "unapprovedMemberListPage",
   components: {
     VueGoodTable,
     MemberShipVerifiedDialog
   },
   methods: {
+    selectionChanged(params) {
+      this.selectedData = this.transLateToVerifiedListFormal(
+        params.selectedRows
+      );
+    },
     onVerifiedBtnClick() {
       this.isVerifiedDialogPopup = true;
     },
@@ -53,11 +59,24 @@ export default {
     },
     phoneFormatFn(value) {
       return value.replace(/\B(?=(\d{3})+(?!\d))/g, "-");
+    },
+    transLateToVerifiedListFormal(params) {
+      if (!params || params.length === 0) return;
+      let tempList = [];
+      for (let i = 0, length = params.length; i < length; i++) {
+        let item = new Object();
+        item.email = params[i].email;
+        item.firstName = params[i].firstName;
+        item.lastName = params[i].lastName;
+        tempList.push(item);
+      }
+      return tempList;
     }
   },
   data() {
     return {
       isVerifiedDialogPopup: false,
+      selectedData: [],
       columns: [
         {
           label: "Timestamp",

@@ -30,7 +30,7 @@
                 class="navbar-item"
                 @click="onOptionClick('UnapprovedFormalMemberList')"
               >Unapproved Formal Member List</a>
-              <a class="navbar-item" @click="onOptionClick('SignupFrom')">Signup From</a>
+              <a class="navbar-item" @click="onOptionClick('SignupForm')">Signup Form</a>
             </div>
           </div>
           <!-- Event -->

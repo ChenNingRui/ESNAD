@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import LoginPage from '@/components/LoginPage.vue'
 import HomePage from '@/components/HomePage.vue'
 import FormalMemberListPage from '@/components/FormalMemberListPage.vue'
-import SignupFromPage from '@/components/SignupFromPage.vue'
+import SignupFormPage from '@/components/SignupFormPage.vue'
 import UnapprovedFormalMemberListPage from '@/components/UnapprovedFormalMemberListPage.vue'
 import SettingPage from '@/components/SettingPage.vue'
 
@@ -28,9 +28,9 @@ export default new Router({
       component: UnapprovedFormalMemberListPage
     },
     {
-      path: 'SignupFromPage',
-      name: 'SignupFromPage',
-      component: SignupFromPage
+      path: 'SignupFormPage',
+      name: 'SignupFormPage',
+      component: SignupFormPage
     }, {
       path: 'SettingPage',
       name: 'SettingPage',

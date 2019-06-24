@@ -4,12 +4,12 @@
       <div class="card-content">
         <vue-good-table
           :columns="columns"
-          :rows="rows"
+          :rows="this.data"
           :pagination-options="{enabled: true,mode: 'records'}"
         >
           <template slot="table-row" slot-scope="props">
             <span v-if="props.column.field == 'ESNcardNo'">
-              <input class="input" type="text" placeholder="Text input">
+              <input class="input" type="text" placeholder="ESNcard No.">
             </span>
           </template>
         </vue-good-table>
@@ -32,8 +32,8 @@ export default {
       isSettingDialogPopup: false,
       columns: [
         {
-          label: "TimeStamp",
-          field: "timeStamp"
+          label: "Email",
+          field: "email"
         },
         {
           label: "First Name",
@@ -47,17 +47,15 @@ export default {
           label: "ESNcard Number",
           field: "ESNcardNo"
         }
-      ],
-      rows: [
-        {
-          name: "Chen",
-          email: "asd@gmail.com",
-          jobTitle: "WPA",
-          status: "Active",
-          priority: "1"
-        }
       ]
     };
+  },
+  props: {
+    data: {
+      default: () => {
+        return "";
+      }
+    }
   },
   methods: {}
 };

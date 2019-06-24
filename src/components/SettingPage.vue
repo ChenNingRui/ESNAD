@@ -34,8 +34,8 @@
     <Modal
       v-model="isSettingDialogPopup"
       title="Edit Profile"
-      ok-text="comfired"
-      cancel-text="cancel"
+      ok-text="Confirm"
+      cancel-text="Cancel"
       :styles="{top: '20px'}"
       @on-ok="onConfirmBtnClick"
       @on-cancel="onCancelBtnClick"

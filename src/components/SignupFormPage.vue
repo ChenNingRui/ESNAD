@@ -1,5 +1,5 @@
 <template>
-  <div id="SignupFromPage">
+  <div id="SignupFormPage">
     <div class="card">
       <div class="card-content">
         <div class="columns is-centered">
@@ -390,7 +390,7 @@
 
 <script>
 export default {
-  name: "SignupFromPage"
+  name: "SignupFormPage"
 };
 </script>
 
