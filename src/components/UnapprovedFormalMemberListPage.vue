@@ -4,7 +4,7 @@
       <div class="card-content">
         <nav class="level">
           <p class="level-right has-text-centered">
-            <a class="button is-primary is-medium">verify</a>
+            <a class="button is-primary is-medium" @click="onVerifiedBtnClick">verify</a>
           </p>
         </nav>
         <vue-good-table
@@ -17,24 +17,47 @@
         ></vue-good-table>
       </div>
     </div>
+    <Modal
+      v-model="isVerifiedDialogPopup"
+      title="Edit Profile "
+      ok-text="comfired"
+      cancel-text="cancel"
+      :styles="{top: '20px'}"
+      @on-ok="onConfirmBtnClick"
+      @on-cancel="onCancelBtnClick"
+    >
+      <MemberShipVerifiedDialog/>
+    </Modal>
   </div>
 </template>
 
 <script>
 import "vue-good-table/dist/vue-good-table.css";
 import { VueGoodTable } from "vue-good-table";
+import MemberShipVerifiedDialog from "./MemberShipVerifiedDialog.vue";
 export default {
   name: "UnapprovedMemberListPage",
   components: {
-    VueGoodTable
+    VueGoodTable,
+    MemberShipVerifiedDialog
   },
   methods: {
+    onVerifiedBtnClick() {
+      this.isVerifiedDialogPopup = true;
+    },
+    onCancelBtnClick() {
+      this.$Message.info("Clicked cancel");
+    },
+    onConfirmBtnClick() {
+      this.$Message.info("Clicked ok");
+    },
     phoneFormatFn(value) {
       return value.replace(/\B(?=(\d{3})+(?!\d))/g, "-");
     }
   },
   data() {
     return {
+      isVerifiedDialogPopup: false,
       columns: [
         {
           label: "Timestamp",

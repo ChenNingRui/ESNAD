@@ -70,6 +70,13 @@ export default {
       isEditDialogPopup: false,
       columns: [
         {
+          label: "ESNcard Number",
+          field: "ESNcardNo",
+          filterOptions: {
+            enabled: true
+          }
+        },
+        {
           label: "Timestamp",
           field: "timestamp",
           type: "date",
@@ -137,6 +144,7 @@ export default {
       ],
       rows: [
         {
+          ESNcardNo: 987426,
           timestamp: "2011-10-31:9: 35 am",
           firstName: "Chen",
           lastName: "Ningrui",

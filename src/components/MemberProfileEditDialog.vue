@@ -2,6 +2,17 @@
   <div id="memberProfileEditDialog">
     <div class="columns is-centered">
       <div class="column is-half">
+        <!-- ESNcard Number -->
+        <div class="field">
+          <label class="label">ESNcard Number</label>
+          <div class="control has-icons-left has-icons-right">
+            <input class="input" type="text" name="ESNcardNo" placeholder="ESNcard Number">
+            <span class="icon is-small is-left">
+              <i class="fas fa-address-card"></i>
+            </span>
+          </div>
+        </div>
+
         <!-- register type -->
         <div class="field">
           <div class="control">

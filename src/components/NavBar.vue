@@ -54,6 +54,17 @@
             </div>
           </div>
 
+          <!-- CashBook -->
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">CashBook</a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item" @click="onOptionClick('History')">History</a>
+              <hr class="navbar-divider">
+              <a class="navbar-item" @click="onOptionClick('NewCashBook')">New Cash Book</a>
+            </div>
+          </div>
+
+          <!-- Slottsstallarna -->
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">Slottsstallarna</a>
             <div class="navbar-dropdown">
@@ -81,7 +92,6 @@
 
 <script>
 export default {
-  name: "NavBar",
   methods: {
     onLogoutClick() {
       this.$router.push({ path: "/" });
