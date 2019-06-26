@@ -36,14 +36,11 @@
 </template>
 
 <script>
-import "vue-good-table/dist/vue-good-table.css";
-import { VueGoodTable } from "vue-good-table";
 import MemberProfileEditDialog from "./MemberProfileEditDialog";
 
 export default {
   name: "FormalMemberListPage",
   components: {
-    VueGoodTable,
     MemberProfileEditDialog
   },
   methods: {

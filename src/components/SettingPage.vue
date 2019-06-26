@@ -46,13 +46,10 @@
 </template>
 
 <script>
-import "vue-good-table/dist/vue-good-table.css";
-import { VueGoodTable } from "vue-good-table";
 import SettingDialog from "./SettingDialog";
 export default {
   name: "settingPage",
   components: {
-    VueGoodTable,
     SettingDialog
   },
   data() {

@@ -33,13 +33,10 @@
 </template>
 
 <script>
-import "vue-good-table/dist/vue-good-table.css";
-import { VueGoodTable } from "vue-good-table";
 import MemberShipVerifiedDialog from "./MemberShipVerifiedDialog.vue";
 export default {
   name: "unapprovedMemberListPage",
   components: {
-    VueGoodTable,
     MemberShipVerifiedDialog
   },
   methods: {

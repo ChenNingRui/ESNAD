@@ -6,6 +6,7 @@ import FormalMemberListPage from '@/components/FormalMemberListPage.vue'
 import SignupFormPage from '@/components/SignupFormPage.vue'
 import UnapprovedFormalMemberListPage from '@/components/UnapprovedFormalMemberListPage.vue'
 import SettingPage from '@/components/SettingPage.vue'
+import CashBookPage from '@/components/CashBookPage.vue'
 
 Vue.use(Router)
 
@@ -35,6 +36,11 @@ export default new Router({
       path: 'SettingPage',
       name: 'SettingPage',
       component: SettingPage
+    },
+    {
+      path: 'CashBookPage',
+      name: 'CashBookPage',
+      component: CashBookPage
     }, {
       path: '*',
       redirect: '/HomePage'

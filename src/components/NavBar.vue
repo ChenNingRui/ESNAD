@@ -55,14 +55,7 @@
           </div>
 
           <!-- CashBook -->
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">CashBook</a>
-            <div class="navbar-dropdown">
-              <a class="navbar-item" @click="onOptionClick('History')">History</a>
-              <hr class="navbar-divider">
-              <a class="navbar-item" @click="onOptionClick('NewCashBook')">New Cash Book</a>
-            </div>
-          </div>
+          <a class="navbar-item" @click="onOptionClick('CashBook')">CashBook</a>
 
           <!-- Slottsstallarna -->
           <div class="navbar-item has-dropdown is-hoverable">
