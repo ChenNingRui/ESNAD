@@ -19,7 +19,7 @@
 
         <!-- incoming and outgoings -->
         <div class="field">
-          <label class="label">Incoming and Outgoings: {{incomingAndOutgoings}}</label>
+          <label class="label">counterbalance: {{counterbalance}}</label>
         </div>
 
         <!-- 	Responsible -->
@@ -178,7 +178,7 @@ export default {
       date: "10 31st 2011",
       beforeCounting: "34532",
       afterCounting: "3243255",
-      incomingAndOutgoings: "-23",
+      counterbalance: "-23",
       status: "During Signup",
       reason: "",
       income: "",
