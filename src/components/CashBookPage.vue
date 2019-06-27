@@ -30,6 +30,7 @@
       </vue-good-table>
     </div>
     <Modal
+      fullscreen
       v-model="isCashLogDialogPopup"
       title="Edit Cashbook Log"
       ok-text="Confirm"
@@ -119,8 +120,8 @@ export default {
       },
       columns: [
         {
-          label: "Timestamp",
-          field: "timestamp",
+          label: "Date",
+          field: "date",
           type: "date",
           dateInputFormat: "YYYY-MM-DD",
           dateOutputFormat: "MM Do YYYY",
@@ -156,7 +157,7 @@ export default {
       ],
       rows: [
         {
-          timestamp: "2011-10-31:9: 35 am",
+          date: "2011-10-31:9: 35 am",
           responsible: "Lotti Biro & Alex Stern",
           description: "Proof count",
           totalCash: "32,448"

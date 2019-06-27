@@ -2,9 +2,9 @@
   <div id="cashLogDialog">
     <div class="card">
       <div class="card-content">
-        <!-- Timestamp -->
+        <!-- Date -->
         <div class="field">
-          <label class="label">Timestamp: {{timestamp}}</label>
+          <label class="label">Date: {{date}}</label>
         </div>
 
         <!-- Before Counting -->
@@ -36,7 +36,7 @@
         <!-- Description -->
         <div class="field">
           <label class="label">Description</label>
-          <textarea class="textarea" placeholder="Description">Office Hours</textarea>
+          <input class="input" type="text" placeholder="Description" value="Office Hour">
         </div>
 
         <!-- counting sheet -->
@@ -45,31 +45,100 @@
           <vue-good-table
             :columns="columns"
             :rows="rows"
-            :pagination-options="{enabled: true,mode: 'records'}"
-            :sort-options="{
-                enabled: false,
-            }"
+            :pagination-options="{enabled: false}"
+            :sort-options="{enabled: false}"
           >
+            >
             <template slot="table-row" slot-scope="props">
               <span v-if="props.column.field == 'beforeQuantity'">
-                <input class="input" type="text" placeholder="Before Quantity">
+                <input
+                  class="input"
+                  type="text"
+                  onkeyup="this.value=this.value.replace(/\D/g,'')"
+                  placeholder="Before Quantity"
+                >
               </span>
               <span v-else-if="props.column.field == 'afterQuantity'">
-                <input class="input" type="text" placeholder="After Quantity">
+                <input
+                  class="input"
+                  type="text"
+                  onkeyup="this.value=this.value.replace(/\D/g,'')"
+                  placeholder="After Quantity"
+                >
               </span>
             </template>
           </vue-good-table>
         </div>
 
-        <!-- Refund and others -->
+        <!-- Bank, refund and others -->
         <div class="field">
-          <label class="label">Refund and others</label>
-          <textarea class="textarea" placeholder="Description">
-Refund and others (during sign-up): 
-Description \ Income \ Expenses
-Bank, refund and others (outside of sign-up):
-Description \ Income \ Expenses
-          </textarea>
+          <label class="label">Bank, refund and others</label>
+          <div class="select">
+            <select v-model="status">
+              <option>During Signup</option>
+              <option>Outside of Signup</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- What, date and name -->
+        <div class="field">
+          <div class="control">
+            <input class="input" type="text" placeholder="What, date and name" v-model="reason">
+          </div>
+        </div>
+
+        <!-- Cash In -->
+        <div class="field">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              onkeyup="this.value=this.value.replace(/\D/g,'')"
+              placeholder="Cash In"
+              v-model="income"
+            >
+          </div>
+        </div>
+
+        <!-- Cash Out -->
+        <div class="field">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              onkeyup="this.value=this.value.replace(/\D/g,'')"
+              placeholder="Cash Out"
+              v-model="expense"
+            >
+          </div>
+        </div>
+
+        <!-- Add button -->
+        <div class="field">
+          <div class="control">
+            <a class="button is-info" @click="onAddBtnClick()">Add</a>
+          </div>
+        </div>
+
+        <!-- Bank, refund and others table -->
+        <div class="field">
+          <vue-good-table
+            :columns="balenceColumns"
+            :rows="balenceRows"
+            :pagination-options="{enabled: true,mode: 'records'}"
+          >
+            <template slot="table-row" slot-scope="props">
+              <span v-if="props.column.field == 'action'">
+                <a
+                  class="fas fa-trash"
+                  title="remove"
+                  style="margin:5px;"
+                  v-on:click="onRowEditClick(props.row)"
+                />
+              </span>
+            </template>
+          </vue-good-table>
         </div>
       </div>
     </div>
@@ -80,12 +149,40 @@ Description \ Income \ Expenses
 export default {
   name: "cashLogDialog",
   components: {},
+  methods: {
+    onRowEditClick(props) {
+      if (props.timestamp === "undefined") return;
+      for (let i = 0, length = this.balenceRows.length; i < length; i++) {
+        let element = this.balenceRows[i];
+        if (
+          element.timestamp !== "undefined" &&
+          element.timestamp === props.timestamp
+        ) {
+          this.balenceRows.splice(i, 1);
+          return;
+        }
+      }
+    },
+    onAddBtnClick() {
+      let item = new Object();
+      item.reason = this.reason;
+      item.status = this.status;
+      item.income = this.income;
+      item.expense = this.expense;
+      item.timestamp = new Date().getTime();
+      this.balenceRows.push(item);
+    }
+  },
   data() {
     return {
-      timestamp: "10 31st 2011",
+      date: "10 31st 2011",
       beforeCounting: "34532",
       afterCounting: "3243255",
       incomingAndOutgoings: "-23",
+      status: "During Signup",
+      reason: "",
+      income: "",
+      expense: "",
       columns: [
         {
           label: "Units",
@@ -131,10 +228,32 @@ export default {
         {
           units: "kr 1,000.00"
         }
-      ]
+      ],
+      balenceColumns: [
+        {
+          label: "Status",
+          field: "status"
+        },
+        {
+          label: "What, date and name",
+          field: "reason"
+        },
+        {
+          label: "Cash in",
+          field: "income"
+        },
+        {
+          label: "Cash out",
+          field: "expense"
+        },
+        {
+          label: "Action",
+          field: "action"
+        }
+      ],
+      balenceRows: []
     };
-  },
-  methods: {}
+  }
 };
 </script>
 
