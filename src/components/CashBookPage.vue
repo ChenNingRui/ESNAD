@@ -29,22 +29,47 @@
         </template>
       </vue-good-table>
     </div>
+    <Modal
+      v-model="isCashLogDialogPopup"
+      title="Edit Cashbook Log"
+      ok-text="Confirm"
+      cancel-text="Cancel"
+      :styles="{top: '20px'}"
+      @on-ok="onConfirmBtnClick"
+      @on-cancel="onCancelBtnClick"
+    >
+      <CashLogDialog/>
+    </Modal>
   </div>
 </template>
 
 <script>
+import CashLogDialog from "./CashLogDialog.vue";
 export default {
   name: "cashBookPage",
-  components: {},
+  components: {
+    CashLogDialog
+  },
   methods: {
-    onAddLogBtnClick() {},
-    onRowEditClick() {}
+    onAddLogBtnClick() {
+      this.isCashLogDialogPopup = true;
+    },
+    onRowEditClick() {
+      this.isCashLogDialogPopup = true;
+    },
+    onConfirmBtnClick() {
+      this.$Message.info("Clicked ok");
+    },
+    onCancelBtnClick() {
+      this.$Message.info("Clicked cancel");
+    }
   },
   data() {
     this.chartSettings = {
       showLine: ["下单用户"]
     };
     return {
+      isCashLogDialogPopup: false,
       chartData: {
         columns: ["日期", "访问用户1", "访问用户2", "下单用户", "下单率"],
         rows: [
@@ -111,15 +136,15 @@ export default {
           }
         },
         {
-          label: "Discription",
-          field: "discription",
+          label: "Description",
+          field: "description",
           filterOptions: {
             enabled: true
           }
         },
         {
-          label: "Amount",
-          field: "amount",
+          label: "TotalCash",
+          field: "totalCash",
           filterOptions: {
             enabled: true
           }
@@ -133,8 +158,8 @@ export default {
         {
           timestamp: "2011-10-31:9: 35 am",
           responsible: "Lotti Biro & Alex Stern",
-          discription: "Proof count",
-          amount: "-23"
+          description: "Proof count",
+          totalCash: "32,448"
         }
       ]
     };
