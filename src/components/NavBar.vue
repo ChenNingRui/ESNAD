@@ -25,6 +25,10 @@
             <a class="navbar-link">MemberShip</a>
             <div class="navbar-dropdown">
               <a class="navbar-item" @click="onOptionClick('FormalMemberList')">Formal Member List</a>
+              <a
+                class="navbar-item"
+                @click="onOptionClick('TemporaryMemberList')"
+              >Temporary Member List</a>
               <hr class="navbar-divider">
               <a
                 class="navbar-item"

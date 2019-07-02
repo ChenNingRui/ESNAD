@@ -1,5 +1,5 @@
 <template>
-  <div id="FormalMemberListPage">
+  <div id="temporaryMemberListPage">
     <div class="card">
       <div class="card-content">
         <vue-good-table
@@ -30,18 +30,18 @@
       @on-ok="onConfirmBtnClick"
       @on-cancel="onCancelBtnClick"
     >
-      <FormalMemberProfileEditDialog/>
+      <TemporaryMemberProfileEditDialog/>
     </Modal>
   </div>
 </template>
 
 <script>
-import FormalMemberProfileEditDialog from "./FormalMemberProfileEditDialog";
+import TemporaryMemberProfileEditDialog from "./TemporaryMemberProfileEditDialog";
 
 export default {
-  name: "FormalMemberListPage",
+  name: "temporaryMemberListPage",
   components: {
-    FormalMemberProfileEditDialog
+    TemporaryMemberProfileEditDialog
   },
   methods: {
     phoneFormatFn(value) {
@@ -67,8 +67,8 @@ export default {
       isEditDialogPopup: false,
       columns: [
         {
-          label: "ESNcard Number",
-          field: "ESNcardNo",
+          label: "T-Number",
+          field: "tNumber",
           filterOptions: {
             enabled: true
           }
@@ -130,26 +130,20 @@ export default {
           }
         },
         {
-          label: "Term",
-          field: "term",
-          type: "number"
-        },
-        {
           label: "Action",
           field: "action"
         }
       ],
       rows: [
         {
-          ESNcardNo: 987426,
+          tNumber: 987426,
           timestamp: "2011-10-31:9: 35 am",
           firstName: "Chen",
           lastName: "Ningrui",
           birthday: "2011-10-31",
           email: "asd@gmail.com",
           phone: "46736156827",
-          nationality: "China",
-          term: 6
+          nationality: "China"
         }
       ]
     };

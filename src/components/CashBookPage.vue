@@ -1,46 +1,50 @@
 <template>
   <div id="cashBookPage">
-    <div>
-      <ve-histogram :data="chartData" :settings="chartSettings"></ve-histogram>
-    </div>
-    <div>
-      <nav class="level">
-        <p class="level-right has-text-centered">
-          <a class="button is-primary is-medium" @click="onAddLogBtnClick">Add New Log</a>
-        </p>
-      </nav>
-      <vue-good-table
-        :columns="columns"
-        :rows="rows"
-        :pagination-options="{
+    <div class="card">
+      <div class="card-content">
+        <div>
+          <ve-histogram :data="chartData" :settings="chartSettings"></ve-histogram>
+        </div>
+        <div>
+          <nav class="level">
+            <p class="level-right has-text-centered">
+              <a class="button is-primary is-medium" @click="onAddLogBtnClick">Add New Log</a>
+            </p>
+          </nav>
+          <vue-good-table
+            :columns="columns"
+            :rows="rows"
+            :pagination-options="{
             enabled: true,
             mode: 'records'}"
-      >
-        <template slot="table-row" slot-scope="props">
-          <span v-if="props.column.field == 'action'">
-            <a
-              class="fas fa-info"
-              title="info"
-              style="margin:5px;"
-              v-on:click="onRowEditClick(props.row)"
-            />
-            <a class="fas fa-trash" title="remove" v-on:click="onRowEditClick(props.row)"/>
-          </span>
-        </template>
-      </vue-good-table>
+          >
+            <template slot="table-row" slot-scope="props">
+              <span v-if="props.column.field == 'action'">
+                <a
+                  class="fas fa-info"
+                  title="info"
+                  style="margin:5px;"
+                  v-on:click="onRowEditClick(props.row)"
+                />
+                <a class="fas fa-trash" title="remove" v-on:click="onRowEditClick(props.row)"/>
+              </span>
+            </template>
+          </vue-good-table>
+        </div>
+        <Modal
+          fullscreen
+          v-model="isCashLogDialogPopup"
+          title="Edit Cashbook Log"
+          ok-text="Confirm"
+          cancel-text="Cancel"
+          :styles="{top: '20px'}"
+          @on-ok="onConfirmBtnClick"
+          @on-cancel="onCancelBtnClick"
+        >
+          <CashLogDialog/>
+        </Modal>
+      </div>
     </div>
-    <Modal
-      fullscreen
-      v-model="isCashLogDialogPopup"
-      title="Edit Cashbook Log"
-      ok-text="Confirm"
-      cancel-text="Cancel"
-      :styles="{top: '20px'}"
-      @on-ok="onConfirmBtnClick"
-      @on-cancel="onCancelBtnClick"
-    >
-      <CashLogDialog/>
-    </Modal>
   </div>
 </template>
 
@@ -67,54 +71,48 @@ export default {
   },
   data() {
     this.chartSettings = {
-      showLine: ["下单用户"]
+      showLine: ["Sum"]
     };
     return {
       isCashLogDialogPopup: false,
       chartData: {
-        columns: ["日期", "访问用户1", "访问用户2", "下单用户", "下单率"],
+        columns: ["Date", "Income", "Expense", "Sum"],
         rows: [
           {
-            日期: "1/1",
-            访问用户1: 1393,
-            访问用户2: 942,
-            下单用户: 1093,
-            下单率: 0.32
+            Date: "1/1",
+            Income: 1393,
+            Expense: 942,
+            Sum: 1093
           },
           {
-            日期: "1/2",
-            访问用户1: 3530,
-            访问用户2: 765,
-            下单用户: 3230,
-            下单率: 0.26
+            Date: "1/2",
+            Income: 3530,
+            Expense: 765,
+            Sum: 3230
           },
           {
-            日期: "1/3",
-            访问用户1: 2923,
-            访问用户2: 124,
-            下单用户: 2623,
-            下单率: 0.76
+            Date: "1/3",
+            Income: 2923,
+            Expense: 124,
+            Sum: 2623
           },
           {
-            日期: "1/4",
-            访问用户1: 1723,
-            访问用户2: 324,
-            下单用户: 1423,
-            下单率: 0.49
+            Date: "1/4",
+            Income: 1723,
+            Expense: 324,
+            Sum: 1423
           },
           {
-            日期: "1/5",
-            访问用户1: 3792,
-            访问用户2: 3245,
-            下单用户: 3492,
-            下单率: 0.323
+            Date: "1/5",
+            Income: 3792,
+            Expense: 3245,
+            Sum: 3492
           },
           {
-            日期: "1/6",
-            访问用户1: 4593,
-            访问用户2: 561,
-            下单用户: 4293,
-            下单率: 0.78
+            Date: "1/6",
+            Income: 4593,
+            Expense: 561,
+            Sum: 4293
           }
         ]
       },

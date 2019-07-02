@@ -64,8 +64,8 @@
     <!-- status -->
     <label class="label">Status</label>
     <i-switch size="large">
-      <span slot="open">active</span>
-      <span slot="close">suspend</span>
+      <span slot="open">ON</span>
+      <span slot="close">OFF</span>
     </i-switch>
   </div>
 </template>

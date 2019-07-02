@@ -167,5 +167,4 @@ export default {
 <style lang="scss">
 @import "../../node_modules/bulma/bulma.sass";
 @import "../../src/mq.sass";
-@import "../css/user.css";
 </style>

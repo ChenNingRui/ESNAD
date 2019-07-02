@@ -1,12 +1,12 @@
 <template>
-  <div id="memberProfileEditDialog">
+  <div id="temporaryMemberProfileEditDialog">
     <div class="columns is-centered">
       <div class="column is-half">
-        <!-- ESNcard Number -->
+        <!-- T-Number -->
         <div class="field">
-          <label class="label">ESNcard Number</label>
+          <label class="label">T-Number</label>
           <div class="control has-icons-left has-icons-right">
-            <input class="input" type="text" name="ESNcardNo" placeholder="ESNcard Number">
+            <input class="input" type="text" name="TNo" placeholder="T-Number">
             <span class="icon is-small is-left">
               <i class="fas fa-address-card"></i>
             </span>
@@ -378,7 +378,7 @@
 
 <script>
 export default {
-  name: "memberProfileEditDialog",
+  name: "temporaryMemberProfileEditDialog",
   data() {
     return {};
   },

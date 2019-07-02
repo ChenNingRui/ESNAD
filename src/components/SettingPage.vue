@@ -86,7 +86,7 @@ export default {
           name: "Chen",
           email: "asd@gmail.com",
           jobTitle: "WPA",
-          status: "Active",
+          status: "ON",
           priority: "1"
         }
       ]

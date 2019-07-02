@@ -7,17 +7,45 @@
             <!-- register type -->
             <div class="field">
               <div class="control">
-                <label class="label">Term</label>
-                <label class="radio">
-                  <input type="radio" name="term">
-                  Six Months
-                </label>
-                <label class="radio">
-                  <input type="radio" name="term">
-                  One Year
-                </label>
+                <label class="label">Do you register to VIS Formal Memeber?</label>
+                <i-switch size="large" v-model="isVIS">
+                  <span slot="open">YES</span>
+                  <span slot="close">NO</span>
+                </i-switch>
               </div>
             </div>
+
+            <!-- isVIS == true -->
+            <template v-if="isVIS">
+              <!-- register term -->
+              <div class="field">
+                <div class="control">
+                  <label class="label">Term</label>
+                  <label class="radio">
+                    <input type="radio" name="term">
+                    Six Months
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="term">
+                    One Year
+                  </label>
+                </div>
+              </div>
+            </template>
+
+            <!-- isVIS == false -->
+            <template v-else>
+              <!-- t-number -->
+              <div class="field">
+                <label class="label">T-Number</label>
+                <div class="control has-icons-left has-icons-right">
+                  <input class="input" type="text" name="firstname" placeholder="T-Number">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-address-card"></i>
+                  </span>
+                </div>
+              </div>
+            </template>
 
             <!-- First Name -->
             <div class="field">
@@ -390,7 +418,12 @@
 
 <script>
 export default {
-  name: "SignupFormPage"
+  name: "SignupFormPage",
+  data() {
+    return {
+      isVIS: true
+    };
+  }
 };
 </script>
 

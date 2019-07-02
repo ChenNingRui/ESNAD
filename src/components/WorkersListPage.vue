@@ -1,10 +1,20 @@
 <template>
-  <div id="FormalMemberListPage">
+  <div id="workersListPage">
     <div class="card">
       <div class="card-content">
+        <nav class="level">
+          <p class="level-right has-text-centered">
+            <a class="button is-primary is-medium" @click="onEventRegisterBtnClick">Event Register</a>
+          </p>
+          <p class="level-right has-text-centered">
+            <a class="button is-primary is-medium" @click="onAddBtnClick">Add</a>
+          </p>
+        </nav>
+        <!-- table -->
         <vue-good-table
           :columns="columns"
           :rows="rows"
+          :selectOptions="{enabled: true}"
           :pagination-options="{enabled: true,mode: 'records'}"
         >
           <template slot="table-row" slot-scope="props">
@@ -22,7 +32,8 @@
       </div>
     </div>
     <Modal
-      v-model="isEditDialogPopup"
+      fullscreen
+      v-model="isWorkersListDialogPopup"
       title="Edit Profile "
       ok-text="Confirm"
       cancel-text="Cancel"
@@ -30,55 +41,54 @@
       @on-ok="onConfirmBtnClick"
       @on-cancel="onCancelBtnClick"
     >
-      <FormalMemberProfileEditDialog/>
+      <WorkersProfileDialog/>
+    </Modal>
+    <Modal
+      v-model="isEventRegisterDialogPopup"
+      title="Event Register "
+      ok-text="Confirm"
+      cancel-text="Cancel"
+      :styles="{top: '20px'}"
+      @on-ok="onConfirmBtnClick"
+      @on-cancel="onCancelBtnClick"
+    >
+      <SlottsstallarnaEventRegisterDialog/>
     </Modal>
   </div>
 </template>
 
 <script>
-import FormalMemberProfileEditDialog from "./FormalMemberProfileEditDialog";
-
+import WorkersProfileDialog from "./WorkersProfileDialog.vue";
+import SlottsstallarnaEventRegisterDialog from "./SlottsstallarnaEventRegisterDialog.vue";
 export default {
-  name: "FormalMemberListPage",
+  name: "workersListPage",
   components: {
-    FormalMemberProfileEditDialog
+    WorkersProfileDialog,
+    SlottsstallarnaEventRegisterDialog
   },
   methods: {
-    phoneFormatFn(value) {
-      return value.replace(/\B(?=(\d{3})+(?!\d))/g, "-");
+    onAddBtnClick() {},
+    onEventRegisterBtnClick() {
+      this.isEventRegisterDialogPopup = true;
     },
-    onRowEditClick(params) {
-      this.isEditDialogPopup = true;
-      return params;
-    },
-    onRowRemoveClick(params) {
-      return params;
-      // this.isEditDialogPopup = true;
-    },
-    onConfirmBtnClick() {
-      this.$Message.info("Clicked ok");
+    onRowEditClick() {
+      this.isWorkersListDialogPopup = true;
     },
     onCancelBtnClick() {
       this.$Message.info("Clicked cancel");
+    },
+    onConfirmBtnClick() {
+      this.$Message.info("Clicked ok");
     }
   },
   data() {
     return {
-      isEditDialogPopup: false,
+      isEventRegisterDialogPopup: false,
+      isWorkersListDialogPopup: false,
       columns: [
         {
           label: "ESNcard Number",
           field: "ESNcardNo",
-          filterOptions: {
-            enabled: true
-          }
-        },
-        {
-          label: "Timestamp",
-          field: "timestamp",
-          type: "date",
-          dateInputFormat: "YYYY-MM-DD",
-          dateOutputFormat: "MM Do YYYY",
           filterOptions: {
             enabled: true
           }
@@ -93,16 +103,6 @@ export default {
         {
           label: "Last Name",
           field: "lastName",
-          filterOptions: {
-            enabled: true
-          }
-        },
-        {
-          label: "Birthday",
-          field: "birthday",
-          type: "date",
-          dateInputFormat: "YYYY-MM-DD",
-          dateOutputFormat: "MM Do YYYY",
           filterOptions: {
             enabled: true
           }
@@ -123,18 +123,6 @@ export default {
           }
         },
         {
-          label: "Nationality",
-          field: "nationality",
-          filterOptions: {
-            enabled: true
-          }
-        },
-        {
-          label: "Term",
-          field: "term",
-          type: "number"
-        },
-        {
           label: "Action",
           field: "action"
         }
@@ -142,22 +130,13 @@ export default {
       rows: [
         {
           ESNcardNo: 987426,
-          timestamp: "2011-10-31:9: 35 am",
           firstName: "Chen",
           lastName: "Ningrui",
-          birthday: "2011-10-31",
           email: "asd@gmail.com",
-          phone: "46736156827",
-          nationality: "China",
-          term: 6
+          phone: "46736156827"
         }
       ]
     };
   }
 };
 </script>
-
-<style lang="scss">
-@import "../../node_modules/bulma/bulma.sass";
-@import "../../src/mq.sass";
-</style>

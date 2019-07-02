@@ -3,10 +3,14 @@ import Router from 'vue-router'
 import LoginPage from '@/components/LoginPage.vue'
 import HomePage from '@/components/HomePage.vue'
 import FormalMemberListPage from '@/components/FormalMemberListPage.vue'
+import TemporaryMemberListPage from '@/components/TemporaryMemberListPage.vue'
 import SignupFormPage from '@/components/SignupFormPage.vue'
 import UnapprovedFormalMemberListPage from '@/components/UnapprovedFormalMemberListPage.vue'
 import SettingPage from '@/components/SettingPage.vue'
 import CashBookPage from '@/components/CashBookPage.vue'
+import SignupNewWorkersPage from '@/components/SignupNewWorkersPage.vue'
+import WorkersListPage from '@/components/WorkersListPage.vue'
+import NewBudgetPage from '@/components/NewBudgetPage.vue'
 
 Vue.use(Router)
 
@@ -23,6 +27,10 @@ export default new Router({
       path: 'FormalMemberListPage',
       name: 'FormalMemberListPage',
       component: FormalMemberListPage
+    }, {
+      path: 'TemporaryMemberListPage',
+      name: 'TemporaryMemberListPage',
+      component: TemporaryMemberListPage
     }, {
       path: 'UnapprovedFormalMemberListPage',
       name: 'UnapprovedFormalMemberListPage',
@@ -41,6 +49,20 @@ export default new Router({
       path: 'CashBookPage',
       name: 'CashBookPage',
       component: CashBookPage
+
+    }, {
+      path: 'SignupNewWorkersPage',
+      name: 'SignupNewWorkersPage',
+      component: SignupNewWorkersPage
+    },
+    {
+      path: 'WorkersListPage',
+      name: 'WorkersListPage',
+      component: WorkersListPage
+    }, {
+      path: 'NewBudgetPage',
+      name: 'NewBudgetPage',
+      component: NewBudgetPage
     }, {
       path: '*',
       redirect: '/HomePage'
@@ -50,4 +72,5 @@ export default new Router({
     path: '*',
     redirect: 'Login'
   }]
+
 })
