@@ -49,7 +49,7 @@
           </div>
           <!-- Budget -->
           <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">Budget</a>
+            <a class="navbar-link">General Budget</a>
             <div class="navbar-dropdown">
               <a class="navbar-item" @click="onOptionClick('ApprovedBudget')">Approved Budget</a>
               <a class="navbar-item" @click="onOptionClick('UnapprovedBudget')">Unapproved Budget</a>

@@ -13,21 +13,6 @@
           </div>
         </div>
 
-        <!-- register type -->
-        <div class="field">
-          <div class="control">
-            <label class="label">Term</label>
-            <label class="radio">
-              <input type="radio" name="term">
-              Six Months
-            </label>
-            <label class="radio">
-              <input type="radio" name="term">
-              One Year
-            </label>
-          </div>
-        </div>
-
         <!-- First Name -->
         <div class="field">
           <label class="label">First Name</label>

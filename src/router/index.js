@@ -11,6 +11,8 @@ import CashBookPage from '@/components/CashBookPage.vue'
 import SignupNewWorkersPage from '@/components/SignupNewWorkersPage.vue'
 import WorkersListPage from '@/components/WorkersListPage.vue'
 import NewBudgetPage from '@/components/NewBudgetPage.vue'
+import UnapprovedBudgetPage from '@/components/UnapprovedBudgetPage.vue'
+import ApprovedBudgetPage from '@/components/ApprovedBudgetPage.vue'
 
 Vue.use(Router)
 
@@ -63,6 +65,15 @@ export default new Router({
       path: 'NewBudgetPage',
       name: 'NewBudgetPage',
       component: NewBudgetPage
+    }, {
+      path: 'UnapprovedBudgetPage',
+      name: 'UnapprovedBudgetPage',
+      component: UnapprovedBudgetPage
+    },
+    {
+      path: 'ApprovedBudgetPage',
+      name: 'ApprovedBudgetPage',
+      component: ApprovedBudgetPage
     }, {
       path: '*',
       redirect: '/HomePage'
