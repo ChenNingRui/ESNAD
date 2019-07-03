@@ -3,12 +3,16 @@
     <div class="card">
       <div class="card-content">
         <nav class="level">
-          <p class="level-right has-text-centered">
-            <a class="button is-primary is-medium" @click="onEventRegisterBtnClick">Event Register</a>
-          </p>
-          <p class="level-right has-text-centered">
-            <a class="button is-primary is-medium" @click="onAddBtnClick">Add</a>
-          </p>
+          <div class="field">
+            <p class="level-right has-text-centered">
+              <a class="button is-primary is-medium" @click="onEventRegisterBtnClick">Event Register</a>
+            </p>
+          </div>
+          <div class="field">
+            <p class="level-right has-text-centered">
+              <a class="button is-primary is-medium" @click="onAddBtnClick">Add</a>
+            </p>
+          </div>
         </nav>
         <!-- table -->
         <vue-good-table

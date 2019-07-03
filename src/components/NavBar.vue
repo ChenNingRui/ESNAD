@@ -7,10 +7,12 @@
         </a>
         <a
           role="button"
-          class="navbar-burger burger"
+          class="navbar-burger"
           aria-label="menu"
           aria-expanded="false"
           data-target="navbarBasicExample"
+          v-bind:class="{ 'is-active': activator }"
+          @click="makeBurger"
         >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -18,7 +20,7 @@
         </a>
       </div>
 
-      <div id="navbarBasicExample" class="navbar-menu">
+      <div id="navbarBasicExample" class="navbar-menu" v-bind:class="{ 'is-active': activator }">
         <div class="navbar-start">
           <div class="navbar-item has-dropdown is-hoverable">
             <!-- MemberShip -->
@@ -90,15 +92,24 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      activator: false
+    };
   },
   methods: {
+    makeBurger() {
+      this.activator = !this.activator;
+      return this.activator;
+    },
     onLogoutClick() {
       this.$router.push({ path: "/" });
     },
     onOptionClick(str) {
       this.$store.dispatch("changeNavBarSelection", str);
       this.$router.push({ path: "/HomePage/" + str + "Page" });
+
+      this.activator = !this.activator;
+      return this.activator;
     }
   }
 };
