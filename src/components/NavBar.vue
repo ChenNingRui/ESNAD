@@ -89,6 +89,9 @@
 
 <script>
 export default {
+  data() {
+    return {};
+  },
   methods: {
     onLogoutClick() {
       this.$router.push({ path: "/" });
