@@ -72,7 +72,10 @@ export default {
           field: "date",
           type: "date",
           dateInputFormat: "YYYY-MM-DD",
-          dateOutputFormat: "MM Do YYYY"
+          dateOutputFormat: "MM Do YYYY",
+          filterOptions: {
+            enabled: true
+          }
         },
         {
           label: "Responsible",

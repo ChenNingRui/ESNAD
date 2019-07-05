@@ -43,10 +43,19 @@
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">Event</a>
             <div class="navbar-dropdown">
-              <a class="navbar-item" @click="onOptionClick('PreviousEvent')">Previous Event</a>
-              <a class="navbar-item" @click="onOptionClick('FutureEvent')">Future Event</a>
+              <a class="navbar-item" @click="onOptionClick('EventList')">Event List</a>
+              <a
+                class="navbar-item"
+                @click="onOptionClick('ApprovedEventBudget')"
+              >Approved Event Budget</a>
+              <a
+                class="navbar-item"
+                @click="onOptionClick('UnapprovedEventBudget')"
+              >Unapproved Event Budget</a>
               <hr class="navbar-divider">
-              <a class="navbar-item" @click="onOptionClick('NewEvent')">New Event</a>
+              <a class="navbar-item" @click="onOptionClick('SignupNewEven')">Signup New Event</a>
+              <a class="navbar-item" @click="onOptionClick('NewEventBudget')">New Event Budget</a>
+              <a class="navbar-item" @click="onOptionClick('EventRegister')">Event Register</a>
             </div>
           </div>
           <!-- Budget -->
@@ -91,6 +100,7 @@
 
 <script>
 export default {
+  name: "NavBar",
   data() {
     return {
       activator: false

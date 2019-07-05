@@ -1,5 +1,5 @@
 <template>
-  <div id="unapprovedBudgetPage">
+  <div id="UnapprovedEventBudgetPage">
     <div class="card">
       <div class="card-content">
         <vue-good-table
@@ -29,18 +29,18 @@
       :styles="{top: '20px'}"
       @on-cancel="onCancelBtnClick"
     >
-      <UnapprovedBudgetDetailDialog/>
+      <UnapprovedEventBudgetDetailDialog />
     </Modal>
   </div>
 </template>
 
 <script>
-import UnapprovedBudgetDetailDialog from "./UnapprovedBudgetDetailDialog";
+import UnapprovedEventBudgetDetailDialog from "./UnapprovedEventBudgetDetailDialog";
 
 export default {
-  name: "unapprovedBudgetPage",
+  name: "UnapprovedEventBudgetPage",
   components: {
-    UnapprovedBudgetDetailDialog
+    UnapprovedEventBudgetDetailDialog
   },
   methods: {
     onRowCheckClick(params) {
@@ -76,8 +76,8 @@ export default {
           }
         },
         {
-          label: "Responsible",
-          field: "responsible",
+          label: "Main Responsible",
+          field: "mainResponsible",
           filterOptions: {
             enabled: true
           }
@@ -95,8 +95,7 @@ export default {
         {
           title: "white party",
           date: "2011-10-31:9: 35 am",
-          responsible: "Chen",
-          lastName: "Ningrui",
+          mainResponsible: "Chen",
           totalCost: "3000kr"
         }
       ]

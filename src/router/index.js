@@ -13,6 +13,11 @@ import WorkersListPage from '@/components/WorkersListPage.vue'
 import NewBudgetPage from '@/components/NewBudgetPage.vue'
 import UnapprovedBudgetPage from '@/components/UnapprovedBudgetPage.vue'
 import ApprovedBudgetPage from '@/components/ApprovedBudgetPage.vue'
+import SignupNewEvenPage from '@/components/SignupNewEvenPage.vue'
+import EventRegisterPage from '@/components/EventRegisterPage.vue'
+import NewEventBudgetPage from '@/components/NewEventBudgetPage.vue'
+import UnapprovedEventBudgetPage from '@/components/UnapprovedEventBudgetPage.vue'
+import ApprovedEventBudgetPage from '@/components/ApprovedEventBudgetPage.vue'
 
 Vue.use(Router)
 
@@ -74,6 +79,26 @@ export default new Router({
       path: 'ApprovedBudgetPage',
       name: 'ApprovedBudgetPage',
       component: ApprovedBudgetPage
+    }, {
+      path: 'SignupNewEvenPage',
+      name: 'SignupNewEvenPage',
+      component: SignupNewEvenPage
+    }, {
+      path: 'EventRegisterPage',
+      name: 'EventRegisterPage',
+      component: EventRegisterPage
+    }, {
+      path: 'NewEventBudgetPage',
+      name: 'NewEventBudgetPage',
+      component: NewEventBudgetPage
+    }, {
+      path: 'UnapprovedEventBudgetPage',
+      name: 'UnapprovedEventBudgetPage',
+      component: UnapprovedEventBudgetPage
+    }, {
+      path: 'ApprovedEventBudgetPage',
+      name: 'ApprovedEventBudgetPage',
+      component: ApprovedEventBudgetPage
     }, {
       path: '*',
       redirect: '/HomePage'

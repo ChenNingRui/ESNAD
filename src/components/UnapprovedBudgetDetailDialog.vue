@@ -57,9 +57,6 @@ export default {
   name: "unapprovedBudgetDetailDialog",
   components: {},
   methods: {
-    onRowEditClick() {
-      this.isCashLogDialogPopup = true;
-    },
     onConfirmBtnClick() {
       this.$Message.info("Clicked ok");
     },

@@ -14,9 +14,9 @@
         <div class="field">
           <label class="label">Title</label>
           <div class="control has-icons-left has-icons-right">
-            <input class="input" type="text" placeholder="Title" value="Event">
+            <input class="input" type="text" placeholder="Title" value="Event" />
             <span class="icon is-small is-left">
-              <i class="fas fa-comments"></i>
+              <i class="fas fa-shopping-cart"></i>
             </span>
           </div>
         </div>
@@ -25,7 +25,7 @@
         <div class="field">
           <label class="label">Responsible</label>
           <div class="control has-icons-left has-icons-right">
-            <input class="input" type="text" name="Responsible" placeholder="Responsible">
+            <input class="input" type="text" name="Responsible" placeholder="Responsible" />
             <span class="icon is-small is-left">
               <i class="fas fa-users"></i>
             </span>
@@ -34,64 +34,73 @@
 
         <!-- Item Adding -->
         <!-- edit -->
+        <template>
+          <span v-if="isEdit">
+            <!-- item-->
+            <div class="field">
+              <label class="label">Item's Name</label>
+              <div class="control has-icons-left has-icons-right">
+                <input
+                  class="input"
+                  type="text"
+                  name="Item"
+                  placeholder="Item's Name"
+                  v-model="item"
+                />
+                <span class="icon is-small is-left">
+                  <i class="fas fa-exclamation-triangle"></i>
+                </span>
+              </div>
+            </div>
 
-        <!-- item-->
-        <div class="field">
-          <label class="label">Item's Name</label>
-          <div class="control has-icons-left has-icons-right">
-            <input class="input" type="text" name="Item" placeholder="Item's Name" v-model="item">
-            <span class="icon is-small is-left">
-              <i class="fas fa-exclamation-triangle"></i>
-            </span>
-          </div>
-        </div>
+            <!-- units -->
+            <div class="field">
+              <div class="control has-icons-left has-icons-right">
+                <input
+                  v-model="units"
+                  class="input"
+                  type="text"
+                  name="Units"
+                  onkeyup="this.value=this.value.replace(/\D/g,'')"
+                  placeholder="Units"
+                />
+                <span class="icon is-small is-left">
+                  <i class="fas fa-coins"></i>
+                </span>
+              </div>
+            </div>
 
-        <!-- units -->
-        <div class="field">
-          <div class="control has-icons-left has-icons-right">
-            <input
-              v-model="units"
-              class="input"
-              type="text"
-              name="Units"
-              onkeyup="this.value=this.value.replace(/\D/g,'')"
-              placeholder="Units"
-            >
-            <span class="icon is-small is-left">
-              <i class="fas fa-coins"></i>
-            </span>
-          </div>
-        </div>
+            <!-- Price/Unit -->
+            <div class="field">
+              <div class="control has-icons-left has-icons-right">
+                <input
+                  v-model="price"
+                  class="input"
+                  type="text"
+                  onkeyup="this.value=this.value.replace(/\D/g,'')"
+                  placeholder="Price/Unit"
+                />
+                <span class="icon is-small is-left">
+                  <i class="fas fa-dollar-sign"></i>
+                </span>
+              </div>
+            </div>
 
-        <!-- Price/Unit -->
-        <div class="field">
-          <div class="control has-icons-left has-icons-right">
-            <input
-              v-model="price"
-              class="input"
-              type="text"
-              onkeyup="this.value=this.value.replace(/\D/g,'')"
-              placeholder="Price/Unit"
-            >
-            <span class="icon is-small is-left">
-              <i class="fas fa-dollar-sign"></i>
-            </span>
-          </div>
-        </div>
+            <!-- note -->
+            <div class="field">
+              <div class="control">
+                <textarea class="textarea" placeholder="Note" v-model="note"></textarea>
+              </div>
+            </div>
 
-        <!-- note -->
-        <div class="field">
-          <div class="control">
-            <textarea class="textarea" placeholder="Note" v-model="note"></textarea>
-          </div>
-        </div>
-
-        <!-- Add button -->
-        <div class="field">
-          <div class="control">
-            <a class="button is-info" @click="onAddBtnClick()">Add</a>
-          </div>
-        </div>
+            <!-- Add button -->
+            <div class="field">
+              <div class="control">
+                <a class="button is-info" @click="onAddBtnClick()">Add</a>
+              </div>
+            </div>
+          </span>
+        </template>
 
         <!-- incoming and outgoings -->
         <div class="field">
@@ -105,6 +114,10 @@
             :rows="rows"
             :pagination-options="{enabled: true,mode: 'records'}"
           >
+            <!-- edit button -->
+            <div slot="table-actions" style="margin:5px;">
+              <button class="button is-warning" @click="onEditBtnClick">Edit</button>
+            </div>
             <template slot="table-row" slot-scope="props">
               <span v-if="props.column.field == 'action'">
                 <a
@@ -139,6 +152,9 @@ export default {
   name: "newBudgetPage",
   components: {},
   methods: {
+    onEditBtnClick() {
+      this.isEdit = this.isEdit ? false : true;
+    },
     onRowEditClick(props) {
       if (props.item === "undefined") return;
       for (let i = 0, length = this.rows.length; i < length; i++) {
@@ -168,6 +184,7 @@ export default {
   },
   data() {
     return {
+      isEdit: false,
       item: "",
       units: "",
       price: "",

@@ -19,7 +19,7 @@
 
         <!-- incoming and outgoings -->
         <div class="field">
-          <label class="label">counterbalance: {{counterbalance}}</label>
+          <label class="label">Cost Result: {{costResult}}</label>
         </div>
 
         <!-- 	Responsible -->
@@ -48,7 +48,6 @@
             :pagination-options="{enabled: false}"
             :sort-options="{enabled: false}"
           >
-            >
             <template slot="table-row" slot-scope="props">
               <span v-if="props.column.field == 'beforeQuantity'">
                 <input
@@ -70,64 +69,73 @@
           </vue-good-table>
         </div>
 
-        <!-- Bank, refund and others -->
-        <div class="field">
-          <label class="label">Bank, refund and others</label>
-          <div class="select">
-            <select v-model="status">
-              <option>During Signup</option>
-              <option>Outside of Signup</option>
-            </select>
-          </div>
-        </div>
+        <template>
+          <span v-if="isEdit">
+            <!-- Bank, refund and others -->
+            <div class="field">
+              <label class="label">Bank, refund and others</label>
+              <div class="select">
+                <select v-model="status">
+                  <option>During Signup</option>
+                  <option>Outside of Signup</option>
+                </select>
+              </div>
+            </div>
 
-        <!-- What, date and name -->
-        <div class="field">
-          <div class="control">
-            <input class="input" type="text" placeholder="What, date and name" v-model="reason">
-          </div>
-        </div>
+            <!-- What, date and name -->
+            <div class="field">
+              <div class="control">
+                <input class="input" type="text" placeholder="What, date and name" v-model="reason">
+              </div>
+            </div>
 
-        <!-- Cash In -->
-        <div class="field">
-          <div class="control">
-            <input
-              class="input"
-              type="text"
-              onkeyup="this.value=this.value.replace(/\D/g,'')"
-              placeholder="Cash In"
-              v-model="income"
-            >
-          </div>
-        </div>
+            <!-- Cash In -->
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  onkeyup="this.value=this.value.replace(/\D/g,'')"
+                  placeholder="Cash In"
+                  v-model="income"
+                >
+              </div>
+            </div>
 
-        <!-- Cash Out -->
-        <div class="field">
-          <div class="control">
-            <input
-              class="input"
-              type="text"
-              onkeyup="this.value=this.value.replace(/\D/g,'')"
-              placeholder="Cash Out"
-              v-model="expense"
-            >
-          </div>
-        </div>
+            <!-- Cash Out -->
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  onkeyup="this.value=this.value.replace(/\D/g,'')"
+                  placeholder="Cash Out"
+                  v-model="expense"
+                >
+              </div>
+            </div>
 
-        <!-- Add button -->
-        <div class="field">
-          <div class="control">
-            <a class="button is-info" @click="onAddBtnClick()">Add</a>
-          </div>
-        </div>
+            <!-- Add button -->
+            <div class="field">
+              <div class="control">
+                <a class="button is-info" @click="onAddBtnClick()">Add</a>
+              </div>
+            </div>
+            <!-- end -->
+          </span>
+        </template>
 
         <!-- Bank, refund and others table -->
         <div class="field">
           <vue-good-table
+            style="margin:5px;"
             :columns="balenceColumns"
             :rows="balenceRows"
             :pagination-options="{enabled: true,mode: 'records'}"
           >
+            <div slot="table-actions" style="margin:5px;">
+              <a class="button is-primary" @click="onEditBtnClick">Edit</a>
+            </div>
             <template slot="table-row" slot-scope="props">
               <span v-if="props.column.field == 'action'">
                 <a
@@ -150,6 +158,9 @@ export default {
   name: "cashLogDialog",
   components: {},
   methods: {
+    onEditBtnClick() {
+      this.isEdit = this.isEdit ? false : true;
+    },
     onRowEditClick(props) {
       if (props.timestamp === "undefined") return;
       for (let i = 0, length = this.balenceRows.length; i < length; i++) {
@@ -175,10 +186,11 @@ export default {
   },
   data() {
     return {
+      isEdit: false,
       date: "10 31st 2011",
       beforeCounting: "34532",
       afterCounting: "3243255",
-      counterbalance: "-23",
+      costResult: "-23",
       status: "During Signup",
       reason: "",
       income: "",
