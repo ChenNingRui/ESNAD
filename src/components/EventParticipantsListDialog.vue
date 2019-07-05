@@ -1,5 +1,5 @@
 <template>
-  <div id="temporaryMemberListPage">
+  <div id="EventParticipantsListDialog">
     <div class="card">
       <div class="card-content">
         <vue-good-table
@@ -9,40 +9,19 @@
         >
           <template slot="table-row" slot-scope="props">
             <span v-if="props.column.field == 'action'">
-              <a
-                class="fas fa-pen"
-                title="edit"
-                style="margin:10px;"
-                v-on:click="onRowEditClick(props.row)"
-              />
               <a class="fas fa-trash" title="remove" v-on:click="onRowEditClick(props.row)" />
             </span>
           </template>
         </vue-good-table>
       </div>
     </div>
-    <Modal
-      v-model="isEditDialogPopup"
-      title="Edit Profile "
-      ok-text="Confirm"
-      cancel-text="Cancel"
-      :styles="{top: '20px'}"
-      @on-ok="onConfirmBtnClick"
-      @on-cancel="onCancelBtnClick"
-    >
-      <TemporaryMemberProfileEditDialog />
-    </Modal>
   </div>
 </template>
 
 <script>
-import TemporaryMemberProfileEditDialog from "./TemporaryMemberProfileEditDialog";
-
 export default {
-  name: "temporaryMemberListPage",
-  components: {
-    TemporaryMemberProfileEditDialog
-  },
+  name: "EventParticipantsListDialog",
+  components: {},
   methods: {
     phoneFormatFn(value) {
       return value.replace(/\B(?=(\d{3})+(?!\d))/g, "-");
@@ -53,7 +32,6 @@ export default {
     },
     onRowRemoveClick(params) {
       return params;
-      // this.isEditDialogPopup = true;
     },
     onConfirmBtnClick() {
       this.$Message.info("Clicked ok");
@@ -67,22 +45,19 @@ export default {
       isEditDialogPopup: false,
       columns: [
         {
+          label: "ESNcard Number",
+          field: "ESNcardNo",
+          filterOptions: {
+            enabled: true
+          }
+        },
+        {
           label: "T-Number",
           field: "tNumber",
           filterOptions: {
             enabled: true
           }
         },
-        // {
-        //   label: "Timestamp",
-        //   field: "timestamp",
-        //   type: "date",
-        //   dateInputFormat: "YYYY-MM-DD",
-        //   dateOutputFormat: "MM Do YYYY",
-        //   filterOptions: {
-        //     enabled: true
-        //   }
-        // },
         {
           label: "First name",
           field: "firstName",
@@ -93,16 +68,6 @@ export default {
         {
           label: "Last Name",
           field: "lastName",
-          filterOptions: {
-            enabled: true
-          }
-        },
-        {
-          label: "Birthday",
-          field: "birthday",
-          type: "date",
-          dateInputFormat: "YYYY-MM-DD",
-          dateOutputFormat: "MM Do YYYY",
           filterOptions: {
             enabled: true
           }
@@ -130,12 +95,20 @@ export default {
           }
         },
         {
+          label: "Dietary Preferences",
+          field: "dietaryPreferences",
+          filterOptions: {
+            enabled: true
+          }
+        },
+        {
           label: "Action",
           field: "action"
         }
       ],
       rows: [
         {
+          ESNcardNo: 987426,
           tNumber: 987426,
           timestamp: "2011-10-31:9: 35 am",
           firstName: "Chen",
@@ -143,7 +116,8 @@ export default {
           birthday: "2011-10-31",
           email: "asd@gmail.com",
           phone: "46736156827",
-          nationality: "China"
+          nationality: "China",
+          dietaryPreferences: "sadsadasdas"
         }
       ]
     };

@@ -128,12 +128,12 @@
         <!-- Bank, refund and others table -->
         <div class="field">
           <vue-good-table
-            style="margin:5px;"
+            style="margin:10px;"
             :columns="balenceColumns"
             :rows="balenceRows"
             :pagination-options="{enabled: true,mode: 'records'}"
           >
-            <div slot="table-actions" style="margin:5px;">
+            <div slot="table-actions" style="margin:10px;">
               <a class="button is-primary" @click="onEditBtnClick">Edit</a>
             </div>
             <template slot="table-row" slot-scope="props">
@@ -141,7 +141,7 @@
                 <a
                   class="fas fa-trash"
                   title="remove"
-                  style="margin:5px;"
+                  style="margin:10px;"
                   v-on:click="onRowEditClick(props.row)"
                 />
               </span>

@@ -15,9 +15,14 @@
           </div>
         </div>
 
-        <!-- Date -->
+        <!-- Start Date -->
         <div class="field">
-          <label class="label">Date:</label>
+          <label class="label">Start date:</label>
+        </div>
+
+        <!-- end Date -->
+        <div class="field">
+          <label class="label">End date:</label>
         </div>
 
         <!-- 	Responsible -->
@@ -122,11 +127,12 @@
           <vue-good-table
             :columns="revenuesColumns"
             :rows="revenuesRows"
-            :pagination-options="{enabled: false}"
-            :sort-options="{enabled: false}"
+            :pagination-options="{
+            enabled: true,
+            mode: 'records'}"
           >
             <!-- Total Revenues: -->
-            <div div slot="table-actions" style="margin:5px;">
+            <div div slot="table-actions" style="margin:10px;">
               <label class="label">Total Revenues In SEK: {{totalRevenues}}</label>
             </div>
 
@@ -165,7 +171,7 @@
                 </span>
                 <span v-if="props.column.field == 'currency'">
                   <div class="select">
-                    <select>
+                    <select v-model="props.row.currency">
                       <option>SEK</option>
                       <option>EUR</option>
                       <option>DKK</option>
@@ -210,9 +216,11 @@
           <vue-good-table
             :columns="costsColumns"
             :rows="costsRows"
-            :pagination-options="{enabled: true,mode: 'records'}"
+            :pagination-options="{
+            enabled: true,
+            mode: 'records'}"
           >
-            <div div slot="table-actions" style="margin:5px;">
+            <div div slot="table-actions" style="margin:10px;">
               <label class="label">Total Costs In SEK: {{totalCosts}}</label>
             </div>
             <template slot="table-row" slot-scope="props">
@@ -250,7 +258,7 @@
                 </span>
                 <span v-if="props.column.field == 'currency'">
                   <div class="select">
-                    <select>
+                    <select v-model="props.row.currency">
                       <option>SEK</option>
                       <option>EUR</option>
                       <option>DKK</option>

@@ -12,10 +12,15 @@
               <a
                 class="fas fa-info"
                 title="edit"
-                style="margin:5px;"
+                style="margin:10px;"
                 v-on:click="onRowCheckClick(props.row)"
               />
-              <a class="fas fa-trash" title="remove" v-on:click="onRowEditClick(props.row)"/>
+              <a
+                class="fas fa-trash"
+                style="margin:10px;"
+                title="remove"
+                v-on:click="onRowEditClick(props.row)"
+              />
             </span>
           </template>
         </vue-good-table>
@@ -30,7 +35,7 @@
       :styles="{top: '20px'}"
       @on-cancel="onCancelBtnClick"
     >
-      <ApprovedBudgetDetailDialog/>
+      <ApprovedBudgetDetailDialog />
     </Modal>
   </div>
 </template>

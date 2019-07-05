@@ -115,7 +115,7 @@
             :pagination-options="{enabled: true,mode: 'records'}"
           >
             <!-- edit button -->
-            <div slot="table-actions" style="margin:5px;">
+            <div slot="table-actions" style="margin:10px;">
               <button class="button is-warning" @click="onEditBtnClick">Edit</button>
             </div>
             <template slot="table-row" slot-scope="props">
@@ -123,7 +123,7 @@
                 <a
                   class="fas fa-trash"
                   title="remove"
-                  style="margin:5px;"
+                  style="margin:10px;"
                   v-on:click="onRowEditClick(props.row)"
                 />
               </span>

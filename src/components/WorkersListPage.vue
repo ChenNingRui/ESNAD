@@ -26,10 +26,15 @@
               <a
                 class="fas fa-pen"
                 title="edit"
-                style="margin:5px;"
+                style="margin:10px;"
                 v-on:click="onRowEditClick(props.row)"
               />
-              <a class="fas fa-trash" title="remove" v-on:click="onRowEditClick(props.row)"/>
+              <a
+                class="fas fa-trash"
+                style="margin:10px;"
+                title="remove"
+                v-on:click="onRowEditClick(props.row)"
+              />
             </span>
           </template>
         </vue-good-table>
@@ -45,7 +50,7 @@
       @on-ok="onConfirmBtnClick"
       @on-cancel="onCancelBtnClick"
     >
-      <WorkersProfileDialog/>
+      <WorkersProfileDialog />
     </Modal>
     <Modal
       v-model="isEventRegisterDialogPopup"
@@ -56,7 +61,7 @@
       @on-ok="onConfirmBtnClick"
       @on-cancel="onCancelBtnClick"
     >
-      <SlottsstallarnaEventRegisterDialog/>
+      <SlottsstallarnaEventRegisterDialog />
     </Modal>
   </div>
 </template>

@@ -8,7 +8,7 @@
             <div class="field">
               <label class="label">Event's Name</label>
               <div class="control has-icons-left has-icons-right">
-                <input class="input" type="text" name="EventName" placeholder="Event's Name ">
+                <input class="input" type="text" name="EventName" placeholder="Event's Name " />
                 <span class="icon is-small is-left">
                   <i class="fas fa-camera-retro"></i>
                 </span>
@@ -24,7 +24,7 @@
                   type="text"
                   name="MainResponsible"
                   placeholder="Main Responsible"
-                >
+                />
                 <span class="icon is-small is-left">
                   <i class="fas fa-crown"></i>
                 </span>
@@ -40,7 +40,7 @@
                   type="text"
                   name="SubResponsible"
                   placeholder="Sub Responsible"
-                >
+                />
                 <span class="icon is-small is-left">
                   <i class="fas fa-chess-knight"></i>
                 </span>
@@ -49,9 +49,17 @@
 
             <!-- Date-->
             <div class="field">
-              <label class="label">Date</label>
+              <label class="label">Start date</label>
               <div class="control">
-                <DatePicker type="date" placeholder="Select date" style="width: 250px"></DatePicker>
+                <DatePicker type="date" placeholder="Start date" style="width: 250px"></DatePicker>
+              </div>
+            </div>
+
+            <!-- Date-->
+            <div class="field">
+              <label class="label">End date:</label>
+              <div class="control">
+                <DatePicker type="date" placeholder="End date:" style="width: 250px"></DatePicker>
               </div>
             </div>
 

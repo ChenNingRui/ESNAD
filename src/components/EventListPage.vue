@@ -1,5 +1,5 @@
 <template>
-  <div id="ApprovedEventBudgetPage">
+  <div id="EventListPage">
     <div class="card">
       <div class="card-content">
         <vue-good-table
@@ -10,17 +10,18 @@
           <template slot="table-row" slot-scope="props">
             <span v-if="props.column.field == 'action'">
               <a
-                class="fas fa-info"
-                title="edit"
+                class="fas fa-coins"
+                title="budget"
                 style="margin:10px;"
-                v-on:click="onRowCheckClick(props.row)"
+                v-on:click="onBudgetCheckClick(props.row)"
               />
               <a
-                class="fas fa-trash"
+                class="fas fa-users"
+                title="participants List"
                 style="margin:10px;"
-                title="remove"
-                v-on:click="onRowCheckClick(props.row)"
+                v-on:click="onParticipantsCheckClick(props.row)"
               />
+              <a class="fas fa-trash" title="remove" style="margin:10px;" />
             </span>
           </template>
         </vue-good-table>
@@ -28,30 +29,46 @@
     </div>
     <Modal
       fullscreen
-      v-model="isDetailCheckDialogPopup"
+      v-model="isBudgetDialogPopup"
       title="Budget Detail "
       ok-text="Confirm"
       cancel-text="Cancel"
       :styles="{top: '20px'}"
       @on-cancel="onCancelBtnClick"
     >
-      <ApprovedEventBudgetDetailDialog />
+      <EventBudgetDetailDialog />
+    </Modal>
+    <Modal
+      fullscreen
+      v-model="isParticipantsDialogPopup"
+      title="Budget Detail "
+      ok-text="Confirm"
+      cancel-text="Cancel"
+      :styles="{top: '20px'}"
+      @on-cancel="onCancelBtnClick"
+    >
+      <EventParticipantsListDialog />
     </Modal>
   </div>
 </template>
 
 <script>
-import ApprovedEventBudgetDetailDialog from "./ApprovedEventBudgetDetailDialog";
+import EventBudgetDetailDialog from "./EventBudgetDetailDialog";
+import EventParticipantsListDialog from "./EventParticipantsListDialog";
 
 export default {
-  name: "ApprovedEventBudgetPage",
+  name: "EventListPage",
   components: {
-    ApprovedEventBudgetDetailDialog
+    EventBudgetDetailDialog,
+    EventParticipantsListDialog
   },
   methods: {
-    onRowCheckClick(params) {
-      this.isDetailCheckDialogPopup = true;
+    onBudgetCheckClick(params) {
+      this.isBudgetDialogPopup = true;
       return params;
+    },
+    onParticipantsCheckClick() {
+      this.isParticipantsDialogPopup = true;
     },
     onConfirmBtnClick() {
       this.$Message.info("Clicked ok");
@@ -62,7 +79,8 @@ export default {
   },
   data() {
     return {
-      isDetailCheckDialogPopup: false,
+      isBudgetDialogPopup: false,
+      isParticipantsDialogPopup: false,
       columns: [
         {
           label: "Title",
@@ -99,6 +117,13 @@ export default {
           }
         },
         {
+          label: "Sub Responsible",
+          field: "subResponsible",
+          filterOptions: {
+            enabled: true
+          }
+        },
+        {
           label: "Total Cost",
           field: "totalCost"
         },
@@ -113,6 +138,7 @@ export default {
           startDate: "2011-10-31:9: 35 am",
           endDate: "2011-10-31:9: 35 am",
           mainResponsible: "Chen",
+          subResponsible: "Ling Xiao Mike",
           totalCost: "3000kr"
         }
       ]

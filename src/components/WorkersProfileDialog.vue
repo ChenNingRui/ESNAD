@@ -11,7 +11,7 @@
               type="text"
               name="firstname"
               placeholder="hint - The name or names that come before your family name"
-            >
+            />
             <span class="icon is-small is-left">
               <i class="fas fa-signature"></i>
             </span>
@@ -27,7 +27,7 @@
               type="text"
               name="lastname"
               placeholder="hint - Your Family's Name"
-            >
+            />
             <span class="icon is-small is-left">
               <i class="fas fa-signature"></i>
             </span>
@@ -59,7 +59,7 @@
         <div class="field">
           <label class="label">Email</label>
           <div class="control has-icons-left has-icons-right">
-            <input class="input" type="email" placeholder="e.g. hello@mail.com">
+            <input class="input" type="email" placeholder="e.g. hello@mail.com" />
             <span class="icon is-small is-left">
               <i class="fas fa-envelope"></i>
             </span>
@@ -76,7 +76,7 @@
               name="phone"
               pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
               placeholder="e.g. +46 7xx xx xxxx"
-            >
+            />
             <span class="icon is-small is-left">
               <i class="fas fa-phone"></i>
             </span>
@@ -113,7 +113,7 @@
                   />
                 </span>
 
-                <a class="fas fa-trash" title="remove" v-on:click="onRowEditClick(props.row)"/>
+                <a class="fas fa-trash" title="remove" v-on:click="onRowEditClick(props.row)" />
               </span>
             </template>
           </vue-good-table>

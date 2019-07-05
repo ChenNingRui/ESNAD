@@ -12,7 +12,7 @@
               <a
                 class="fas fa-info"
                 title="edit"
-                style="margin:5px;"
+                style="margin:10px;"
                 v-on:click="onRowCheckClick(props.row)"
               />
             </span>
@@ -29,7 +29,7 @@
       :styles="{top: '20px'}"
       @on-cancel="onCancelBtnClick"
     >
-      <UnapprovedBudgetDetailDialog/>
+      <UnapprovedBudgetDetailDialog />
     </Modal>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div id="UnapprovedEventBudgetDetailDialog">
+  <div id="EventBudgetDetailDialog">
     <div class="card">
       <div class="card-content">
         <!-- Title -->
@@ -43,7 +43,7 @@
             mode: 'records'}"
           >
             <!-- Total Revenues: -->
-            <div div slot="table-actions" style="margin:10px;">
+            <div div slot="table-actions" style="margin:5px;">
               <label class="label">Total Revenues In SEK: {{totalRevenues}}</label>
             </div>
           </vue-good-table>
@@ -59,27 +59,11 @@
             enabled: true,
             mode: 'records'}"
           >
-            <div div slot="table-actions" style="margin:10px;">
+            <div div slot="table-actions" style="margin:5px;">
               <label class="label">Total Costs In SEK: {{totalCosts}}</label>
             </div>
           </vue-good-table>
         </div>
-
-        <nav class="level">
-          <div class="level-left">
-            <div class="level-item">
-              <a class="button is-success is-outlined">Approve</a>
-            </div>
-
-            <div class="level-item">
-              <a class="button is-danger is-outlined">Disapprove</a>
-            </div>
-
-            <div class="level-item">
-              <a class="button is-warning is-outlined">Abstain</a>
-            </div>
-          </div>
-        </nav>
       </div>
     </div>
   </div>
@@ -87,7 +71,7 @@
 
 <script>
 export default {
-  name: "UnapprovedEventBudgetDetailDialog",
+  name: "EventBudgetDetailDialog",
   components: {},
   methods: {
     onConfirmBtnClick() {

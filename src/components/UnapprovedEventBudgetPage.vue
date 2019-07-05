@@ -12,7 +12,7 @@
               <a
                 class="fas fa-info"
                 title="edit"
-                style="margin:5px;"
+                style="margin:10px;"
                 v-on:click="onRowCheckClick(props.row)"
               />
             </span>
@@ -66,8 +66,18 @@ export default {
           }
         },
         {
-          label: "Date",
-          field: "date",
+          label: "Start Date",
+          field: "startDate",
+          type: "date",
+          dateInputFormat: "YYYY-MM-DD",
+          dateOutputFormat: "MM Do YYYY",
+          filterOptions: {
+            enabled: true
+          }
+        },
+        {
+          label: "End Date",
+          field: "endDate",
           type: "date",
           dateInputFormat: "YYYY-MM-DD",
           dateOutputFormat: "MM Do YYYY",
@@ -94,7 +104,8 @@ export default {
       rows: [
         {
           title: "white party",
-          date: "2011-10-31:9: 35 am",
+          startDate: "2011-10-31:9: 35 am",
+          endDate: "2011-10-31:9: 35 am",
           mainResponsible: "Chen",
           totalCost: "3000kr"
         }

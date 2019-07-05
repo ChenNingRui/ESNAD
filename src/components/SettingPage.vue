@@ -17,13 +17,13 @@
               <a
                 class="fas fa-pen"
                 title="edit"
-                style="margin:5px;"
+                style="margin:10px;"
                 v-on:click="onRowEditClick(props.row)"
               />
               <a
                 class="fas fa-trash"
                 title="remove"
-                style="margin:5px;"
+                style="margin:10px;"
                 v-on:click="onRowEditClick(props.row)"
               />
             </span>
@@ -40,7 +40,7 @@
       @on-ok="onConfirmBtnClick"
       @on-cancel="onCancelBtnClick"
     >
-      <SettingDialog/>
+      <SettingDialog />
     </Modal>
   </div>
 </template>

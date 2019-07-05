@@ -2,24 +2,34 @@
   <div id="ApprovedEventBudgetDetailDialog">
     <div class="card">
       <div class="card-content">
-        <!-- Before Counting -->
+        <!-- Title -->
         <div class="field">
           <label class="label">Title: {{title}}</label>
         </div>
 
-        <!-- Before Counting -->
+        <!-- Start Date -->
         <div class="field">
-          <label class="label">Date: {{date}}</label>
+          <label class="label">Start date:</label>
         </div>
 
-        <!-- Before Counting -->
+        <!-- end Date -->
         <div class="field">
-          <label class="label">Responsible: {{responsible}}</label>
+          <label class="label">End date:</label>
         </div>
 
-        <!-- Before Counting -->
+        <!-- main Responsible -->
         <div class="field">
-          <label class="label">Total Cost: {{totalCost}}</label>
+          <label class="label">Main Responsible: {{mainResponsible}}</label>
+        </div>
+
+        <!-- sub Responsible -->
+        <div class="field">
+          <label class="label">Sub Responsible: {{subResponsible}}</label>
+        </div>
+
+        <!-- Total Costs -->
+        <div class="field">
+          <label class="label">Total Costs: {{totalCosts}}</label>
         </div>
 
         <!-- edit button -->
@@ -114,8 +124,9 @@
           <vue-good-table
             :columns="revenuesColumns"
             :rows="revenuesRows"
-            :pagination-options="{enabled: false}"
-            :sort-options="{enabled: false}"
+            :pagination-options="{
+            enabled: true,
+            mode: 'records'}"
           >
             <!-- Total Revenues: -->
             <div div slot="table-actions" style="margin:5px;">
@@ -157,7 +168,7 @@
                 </span>
                 <span v-if="props.column.field == 'currency'">
                   <div class="select">
-                    <select>
+                    <select v-model="props.row.currency">
                       <option>SEK</option>
                       <option>EUR</option>
                       <option>DKK</option>
@@ -202,7 +213,9 @@
           <vue-good-table
             :columns="costsColumns"
             :rows="costsRows"
-            :pagination-options="{enabled: true,mode: 'records'}"
+            :pagination-options="{
+            enabled: true,
+            mode: 'records'}"
           >
             <div div slot="table-actions" style="margin:5px;">
               <label class="label">Total Costs In SEK: {{totalCosts}}</label>
@@ -242,7 +255,7 @@
                 </span>
                 <span v-if="props.column.field == 'currency'">
                   <div class="select">
-                    <select>
+                    <select v-model="props.row.currency">
                       <option>SEK</option>
                       <option>EUR</option>
                       <option>DKK</option>
@@ -306,10 +319,10 @@ export default {
       isEdit: false,
       title: "white party",
       date: "10 31st 2011",
-      responsible: "chen",
-      totalCost: "123",
+      mainResponsible: "chen",
+      subResponsible: "Ling Xiao Mike",
+      totalCosts: "123",
       totalRevenues: 0,
-      totalCosts: 0,
       revenuesColumns: [
         {
           label: "Item",
@@ -345,7 +358,7 @@ export default {
           item: 987426,
           unit: 2,
           priceUnit: "2011-10-31:9: 35 am",
-          currency: "Chen",
+          currency: "SEK",
           priceInSEK: "Ningrui",
           note: "1231"
         }

@@ -17,6 +17,21 @@
               </div>
             </div>
 
+            <!-- Start Date -->
+            <div class="field">
+              <label class="label">Start date:</label>
+            </div>
+
+            <!-- end Date -->
+            <div class="field">
+              <label class="label">End date:</label>
+            </div>
+
+            <!-- 	Responsible -->
+            <div class="field">
+              <label class="label">Main Responsible:</label>
+            </div>
+
             <!-- Is VIS Memeber? -->
             <div class="field">
               <label class="label">Is VIS Memeber?</label>
@@ -34,7 +49,7 @@
               <div class="field">
                 <label class="label">ESNcard Number</label>
                 <div class="control has-icons-left has-icons-right">
-                  <input class="input" type="text" placeholder="ESNcard Number">
+                  <input class="input" type="text" placeholder="ESNcard Number" />
                   <span class="icon is-small is-left">
                     <i class="fas fa-address-card"></i>
                   </span>
@@ -48,7 +63,7 @@
               <div class="field">
                 <label class="label">T-Number</label>
                 <div class="control has-icons-left has-icons-right">
-                  <input class="input" type="text" name="firstname" placeholder="T-Number">
+                  <input class="input" type="text" name="firstname" placeholder="T-Number" />
                   <span class="icon is-small is-left">
                     <i class="fas fa-address-card"></i>
                   </span>

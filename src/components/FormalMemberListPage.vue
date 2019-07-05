@@ -12,10 +12,10 @@
               <a
                 class="fas fa-pen"
                 title="edit"
-                style="margin:5px;"
+                style="margin:10px;"
                 v-on:click="onRowEditClick(props.row)"
               />
-              <a class="fas fa-trash" title="remove" v-on:click="onRowEditClick(props.row)"/>
+              <a class="fas fa-trash" title="remove" v-on:click="onRowEditClick(props.row)" />
             </span>
           </template>
         </vue-good-table>
@@ -30,7 +30,7 @@
       @on-ok="onConfirmBtnClick"
       @on-cancel="onCancelBtnClick"
     >
-      <FormalMemberProfileEditDialog/>
+      <FormalMemberProfileEditDialog />
     </Modal>
   </div>
 </template>
@@ -73,16 +73,16 @@ export default {
             enabled: true
           }
         },
-        {
-          label: "Timestamp",
-          field: "timestamp",
-          type: "date",
-          dateInputFormat: "YYYY-MM-DD",
-          dateOutputFormat: "MM Do YYYY",
-          filterOptions: {
-            enabled: true
-          }
-        },
+        // {
+        //   label: "Timestamp",
+        //   field: "timestamp",
+        //   type: "date",
+        //   dateInputFormat: "YYYY-MM-DD",
+        //   dateOutputFormat: "MM Do YYYY",
+        //   filterOptions: {
+        //     enabled: true
+        //   }
+        // },
         {
           label: "First name",
           field: "firstName",

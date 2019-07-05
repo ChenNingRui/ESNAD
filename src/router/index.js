@@ -18,6 +18,7 @@ import EventRegisterPage from '@/components/EventRegisterPage.vue'
 import NewEventBudgetPage from '@/components/NewEventBudgetPage.vue'
 import UnapprovedEventBudgetPage from '@/components/UnapprovedEventBudgetPage.vue'
 import ApprovedEventBudgetPage from '@/components/ApprovedEventBudgetPage.vue'
+import EventListPage from '@/components/EventListPage.vue'
 
 Vue.use(Router)
 
@@ -100,6 +101,10 @@ export default new Router({
       name: 'ApprovedEventBudgetPage',
       component: ApprovedEventBudgetPage
     }, {
+      path: 'EventListPage',
+      name: 'EventListPage',
+      component: EventListPage
+    }, {
       path: '*',
       redirect: '/HomePage'
     }
@@ -108,5 +113,4 @@ export default new Router({
     path: '*',
     redirect: 'Login'
   }]
-
 })
