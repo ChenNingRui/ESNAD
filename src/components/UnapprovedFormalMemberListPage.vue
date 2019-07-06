@@ -27,7 +27,7 @@
       @on-ok="onConfirmBtnClick"
       @on-cancel="onCancelBtnClick"
     >
-      <MemberShipVerifiedDialog :data="this.selectedData"/>
+      <MemberShipVerifiedDialog :data="this.selectedData" />
     </Modal>
   </div>
 </template>
@@ -132,6 +132,10 @@ export default {
           }
         },
         {
+          label: "Dietary Preferences",
+          field: "dietaryPreferences"
+        },
+        {
           label: "Term",
           field: "term",
           type: "number"
@@ -156,6 +160,7 @@ export default {
           email: "asd@gmail.com",
           phone: "46736156827",
           nationality: "China",
+          dietaryPreferences: "sadsadasdas",
           term: 12
         }
       ]
