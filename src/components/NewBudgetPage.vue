@@ -102,11 +102,6 @@
           </span>
         </template>
 
-        <!-- incoming and outgoings -->
-        <div class="field">
-          <label class="label">Total Costs: {{totalCosts}}</label>
-        </div>
-
         <!-- Bank, refund and others table -->
         <div class="field">
           <vue-good-table
@@ -115,8 +110,11 @@
             :pagination-options="{enabled: true,mode: 'records'}"
           >
             <!-- edit button -->
-            <div slot="table-actions" style="margin:10px;">
+            <div slot="table-actions" style=" margin:5px;">
               <button class="button is-warning" @click="onEditBtnClick">Edit</button>
+            </div>
+            <div slot="table-actions-bottom">
+              <label class="label">Total Costs: {{totalCosts}}</label>
             </div>
             <template slot="table-row" slot-scope="props">
               <span v-if="props.column.field == 'action'">

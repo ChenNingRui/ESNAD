@@ -5,7 +5,7 @@
         <vue-good-table
           :columns="columns"
           :rows="rows"
-          :pagination-options="{enabled: true,mode: 'records'}"
+          :pagination-options="{enabled: true,mode: 'pages'}"
         >
           <template slot="table-row" slot-scope="props">
             <span v-if="props.column.field == 'action'">

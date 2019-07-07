@@ -5,7 +5,7 @@
         <vue-good-table
           :columns="columns"
           :rows="rows"
-          :pagination-options="{enabled: true,mode: 'records'}"
+          :pagination-options="{enabled: true,mode: 'pages'}"
         >
           <template slot="table-row" slot-scope="props">
             <span v-if="props.column.field == 'action'">
@@ -14,6 +14,9 @@
                 title="edit"
                 style="margin:10px;"
                 v-on:click="onRowEditClick(props.row)"
+                :pagination-options="{
+                  enabled: true,
+                  mode: 'pages'}"
               />
               <a class="fas fa-trash" title="remove" v-on:click="onRowEditClick(props.row)" />
             </span>

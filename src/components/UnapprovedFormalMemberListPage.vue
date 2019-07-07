@@ -13,7 +13,7 @@
           :select-options="{ enabled: true }"
           :pagination-options="{
             enabled: true,
-            mode: 'records'}"
+            mode: 'pages'}"
           @on-selected-rows-change="selectionChanged"
         >></vue-good-table>
       </div>
