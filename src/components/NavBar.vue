@@ -3,7 +3,7 @@
     <nav class="navbar is-white" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item">
-          <img src="../resource/logo1.png" width="120" height="30">
+          <img src="../resource/logo1.png" width="120" height="30" />
         </a>
         <a
           role="button"
@@ -31,7 +31,7 @@
                 class="navbar-item"
                 @click="onOptionClick('TemporaryMemberList')"
               >Temporary Member List</a>
-              <hr class="navbar-divider">
+              <hr class="navbar-divider" />
               <a
                 class="navbar-item"
                 @click="onOptionClick('UnapprovedFormalMemberList')"
@@ -52,7 +52,7 @@
                 class="navbar-item"
                 @click="onOptionClick('UnapprovedEventBudget')"
               >Unapproved Event Budget</a>
-              <hr class="navbar-divider">
+              <hr class="navbar-divider" />
               <a class="navbar-item" @click="onOptionClick('SignupNewEven')">Signup New Event</a>
               <a class="navbar-item" @click="onOptionClick('NewEventBudget')">New Event Budget</a>
               <a class="navbar-item" @click="onOptionClick('EventRegister')">Event Register</a>
@@ -64,7 +64,7 @@
             <div class="navbar-dropdown">
               <a class="navbar-item" @click="onOptionClick('ApprovedBudget')">Approved Budget</a>
               <a class="navbar-item" @click="onOptionClick('UnapprovedBudget')">Unapproved Budget</a>
-              <hr class="navbar-divider">
+              <hr class="navbar-divider" />
               <a class="navbar-item" @click="onOptionClick('NewBudget')">New Budget</a>
             </div>
           </div>
@@ -77,7 +77,7 @@
             <a class="navbar-link">Slottsstallarna</a>
             <div class="navbar-dropdown">
               <a class="navbar-item" @click="onOptionClick('WorkersList')">Workers' List</a>
-              <hr class="navbar-divider">
+              <hr class="navbar-divider" />
               <a class="navbar-item" @click="onOptionClick('SignupNewWorkers')">Signup New Workers</a>
             </div>
           </div>
@@ -88,7 +88,7 @@
           <div class="navbar-item">
             <div class="buttons">
               <a class="button is-primary">
-                <strong @click="onLogoutClick">Logout</strong>
+                <strong @click="onLogoutClick" href="/signout">Logout</strong>
               </a>
             </div>
           </div>

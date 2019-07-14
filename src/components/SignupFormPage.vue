@@ -22,11 +22,11 @@
                 <div class="control">
                   <label class="label">Term</label>
                   <label class="radio">
-                    <input type="radio" name="term">
+                    <input type="radio" name="term" value="6" v-model="term" />
                     Six Months
                   </label>
                   <label class="radio">
-                    <input type="radio" name="term">
+                    <input type="radio" name="term" value="12" v-model="term" checked="true" />
                     One Year
                   </label>
                 </div>
@@ -39,7 +39,13 @@
               <div class="field">
                 <label class="label">T-Number</label>
                 <div class="control has-icons-left has-icons-right">
-                  <input class="input" type="text" name="firstname" placeholder="T-Number">
+                  <input
+                    class="input"
+                    type="text"
+                    name="firstname"
+                    placeholder="T-Number"
+                    v-model="TNumber"
+                  />
                   <span class="icon is-small is-left">
                     <i class="fas fa-address-card"></i>
                   </span>
@@ -56,7 +62,8 @@
                   type="text"
                   name="firstname"
                   placeholder="hint - The name or names that come before your family name"
-                >
+                  v-model="firstName"
+                />
                 <span class="icon is-small is-left">
                   <i class="fas fa-signature"></i>
                 </span>
@@ -72,7 +79,8 @@
                   type="text"
                   name="lastname"
                   placeholder="hint - Your Family's Name"
-                >
+                  v-model="lastName"
+                />
                 <span class="icon is-small is-left">
                   <i class="fas fa-signature"></i>
                 </span>
@@ -83,7 +91,12 @@
             <div class="field">
               <label class="label">Date of Birth</label>
               <div class="control">
-                <DatePicker type="date" placeholder="Select date" style="width: 250px"></DatePicker>
+                <DatePicker
+                  type="date"
+                  placeholder="Select date"
+                  style="width: 250px"
+                  v-model="birthday"
+                ></DatePicker>
               </div>
             </div>
 
@@ -91,7 +104,7 @@
             <div class="control">
               <label class="label">Gender</label>
               <div class="select">
-                <select>
+                <select v-model="gender">
                   <option name="gender">Male</option>
                   <option name="gender">Female</option>
                   <option name="gender">They</option>
@@ -104,7 +117,7 @@
             <div class="field">
               <label class="label">Email</label>
               <div class="control has-icons-left has-icons-right">
-                <input class="input" type="email" placeholder="e.g. hello@mail.com">
+                <input class="input" type="email" placeholder="e.g. hello@mail.com" v-model="email" />
                 <span class="icon is-small is-left">
                   <i class="fas fa-envelope"></i>
                 </span>
@@ -121,7 +134,8 @@
                   name="phone"
                   pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                   placeholder="e.g. +46 7xx xx xxxx"
-                >
+                  v-model="phone"
+                />
                 <span class="icon is-small is-left">
                   <i class="fas fa-phone"></i>
                 </span>
@@ -133,7 +147,7 @@
               <label class="label">Country and Area</label>
               <p class="control has-icons-left">
                 <span class="select">
-                  <select>
+                  <select v-model="nationality">
                     <option value="AFG">Afghanistan</option>
                     <option value="ALA">Åland Islands</option>
                     <option value="ALB">Albania</option>
@@ -395,14 +409,18 @@
             <div class="field">
               <label class="label">Dietary Preferences</label>
               <div class="control">
-                <textarea class="textarea" placeholder="hint-Something you cannot eat"></textarea>
+                <textarea
+                  class="textarea"
+                  placeholder="hint-Something you cannot eat"
+                  v-model="dietaryPreferences"
+                ></textarea>
               </div>
             </div>
 
             <!-- submit button -->
             <div class="field is-grouped">
               <div class="control">
-                <button class="button is-link">Submit</button>
+                <button class="button is-link" @click="onSubmitBtnClick">Submit</button>
               </div>
               <div class="control">
                 <button class="button is-text">Cancel</button>
@@ -421,8 +439,63 @@ export default {
   name: "SignupFormPage",
   data() {
     return {
-      isVIS: true
+      isVIS: true,
+      TNumber: "",
+      term: "12",
+      gender: "Male",
+      firstName: "",
+      lastName: "",
+      birthday: "",
+      email: "",
+      phone: "",
+      nationality: "",
+      dietaryPreferences: ""
     };
+  },
+  methods: {
+    onSubmitBtnClick() {
+      this.registerUser();
+    },
+    registerUser() {
+      let self = this;
+      let requestURL;
+
+      let params = {
+        first_name: this.firstName,
+        last_name: this.lastName,
+        date_of_birth: this.birthday,
+        gender: this.gender,
+        email: this.email,
+        phone_no: this.phone,
+        nationality: this.nationality,
+        dietary_preference: this.dietaryPreferences
+      };
+
+      if (this.isVIS) {
+        //Formal
+        requestURL = "/register_member";
+        params.term = self.term;
+      } else {
+        //Temporary
+        requestURL = "/register_temporary_member";
+        params.t_no = self.TNumber;
+      }
+
+      this.$axios
+        .post(requestURL, this.$qs.stringify(params))
+        .then(response => {
+          self.$Notice.success({
+            title: "register success",
+            desc: response.statusText
+          });
+        })
+        .catch(error => {
+          self.$Notice.warning({
+            title: "server error",
+            desc: error.toString()
+          });
+        });
+    }
   }
 };
 </script>

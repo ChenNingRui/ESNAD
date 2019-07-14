@@ -9,14 +9,14 @@
               <div class="card-content">
                 <!-- title and logo -->
                 <h1 class="title">
-                  <img src="../resource/logo.png" alt="ESNLogo" width="30">
+                  <img src="../resource/logo.png" alt="ESNLogo" width="30" />
                   ESN Växjö Administor
                 </h1>
                 <!-- Username Input -->
                 <div class="field">
                   <label class="label">Username</label>
                   <div class="control has-icons-left has-icons-right">
-                    <input class="input" type="email" placeholder="Text input" v-model="username">
+                    <input class="input" type="email" placeholder="Text input" v-model="email" />
                     <span class="icon is-small is-left">
                       <i class="fas fa-user"></i>
                     </span>
@@ -26,7 +26,7 @@
                 <!-- Password Input -->
                 <div class="field">
                   <p class="control has-icons-left">
-                    <input class="input" type="password" placeholder="Password" v-model="password">
+                    <input class="input" type="password" placeholder="Password" v-model="password" />
                     <span class="icon is-small is-left">
                       <i class="fas fa-lock"></i>
                     </span>
@@ -44,7 +44,10 @@
                 <!-- Submit Button -->
                 <div class="field">
                   <div class="control">
-                    <button class="button is-primary is-medium is-fullwidth" @click="onClickButton">
+                    <button
+                      class="button is-primary is-medium is-fullwidth"
+                      @click="onLoginBtnClick"
+                    >
                       <i class="fa fa-user"></i>
                       Login
                     </button>
@@ -64,21 +67,40 @@ export default {
   name: "loginPage",
   data() {
     return {
-      username: "",
+      email: "",
       password: "",
       isPasswordCorrect: false //false: hidden, true: show
     };
   },
   methods: {
-    onClickButton() {
-      if (this.username !== "1" || this.password !== "1") {
-        //login fail
-        this.isPasswordCorrect = true;
-      } else {
-        //login success
-        this.$router.push({ path: "/HomePage" });
-        //this.isPasswordCorrect = false;
-      }
+    onLoginBtnClick() {
+      this.userLogin();
+    },
+    userLogin() {
+      let self = this;
+      let params = {
+        email: this.email,
+        password: this.password
+      };
+      this.$axios
+        .post("/signin", this.$qs.stringify(params))
+        .then(response => {
+          if (
+            typeof response.data.success !== "undefined" &&
+            !response.data.success
+          ) {
+            self.isPasswordCorrect = true;
+          } else {
+            self.isPasswordCorrect = false;
+            self.$router.push({ path: "/HomePage" });
+          }
+        })
+        .catch(error => {
+          self.$Notice.warning({
+            title: "server error",
+            desc: error.toString()
+          });
+        });
     }
   }
 };

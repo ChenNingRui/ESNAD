@@ -24,7 +24,7 @@
                 class="fas fa-trash"
                 title="remove"
                 style="margin:10px;"
-                v-on:click="onRowEditClick(props.row)"
+                v-on:click="onRowRemoveClick(props.row)"
               />
             </span>
           </template>
@@ -40,7 +40,7 @@
       @on-ok="onConfirmBtnClick"
       @on-cancel="onCancelBtnClick"
     >
-      <SettingDialog />
+      <SettingDialog :data="this.selectedData" />
     </Modal>
   </div>
 </template>
@@ -55,6 +55,7 @@ export default {
   data() {
     return {
       isSettingDialogPopup: false,
+      selectedData: "",
       columns: [
         {
           label: "Name",
@@ -70,32 +71,33 @@ export default {
         },
         {
           label: "Status",
-          field: "status"
+          field: "statusDescription"
         },
         {
           label: "Priority",
-          field: "priority"
+          field: "priority",
+          type: "number"
         },
         {
           label: "Action",
           field: "action"
         }
       ],
-      rows: [
-        {
-          name: "Chen",
-          email: "asd@gmail.com",
-          jobTitle: "WPA",
-          status: "ON",
-          priority: "1"
-        }
-      ]
+      rows: []
     };
+  },
+  mounted() {
+    this.fetchUserList();
   },
   methods: {
     onRowEditClick(value) {
+      this.selectedData = value;
       this.isSettingDialogPopup = true;
-      return value;
+    },
+    onRowRemoveClick(value) {
+      this.removeUser(value);
+      this.clearAllData();
+      this.fetchUserList();
     },
     onConfirmBtnClick() {
       this.$Message.info("Clicked ok");
@@ -104,7 +106,54 @@ export default {
       this.$Message.info("Clicked cancel");
     },
     onAddUserBtnClick() {
+      this.selectedData = "";
       this.isSettingDialogPopup = true;
+    },
+    clearAllData() {
+      self.rows = [];
+    },
+    fetchUserList() {
+      let self = this;
+      this.$axios
+        .get("/users")
+        .then(response => {
+          for (let i = 0, length = response.data.length; i < length; i++) {
+            let item = new Object();
+            item.name = response.data[i].name;
+            item.email = response.data[i].email;
+            item.jobTitle = response.data[i].job_title;
+            item.priority = response.data[i].priority;
+            item.statusDescription = response.data[i].status
+              ? "Active"
+              : "Suspect";
+            item.status = response.data[i].status;
+            item.id = response.data[i]._id;
+            self.rows.push(item);
+          }
+        })
+        .catch(error => {
+          self.$Notice.warning({
+            title: "server error",
+            desc: error.toString()
+          });
+        });
+    },
+    removeUser(item) {
+      let self = this;
+      this.$axios
+        .delete("/user/" + item.id)
+        .then(response => {
+          self.$Notice.success({
+            title: "removed success",
+            desc: response.toString()
+          });
+        })
+        .catch(error => {
+          self.$Notice.warning({
+            title: "server error",
+            desc: error.toString()
+          });
+        });
     }
   }
 };
